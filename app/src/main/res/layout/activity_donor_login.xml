@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context=".DonorActivities.DonorLoginActivity">
+
+
+    <TextView
+        android:id="@+id/main_logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:fontFamily="casual"
+        android:gravity="center"
+        android:text="@string/giveit_icon"
+        android:textColor="@color/purple_700"
+        android:textSize="80sp"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:id="@+id/slogan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Share and Stay Blessed!"
+        android:layout_below="@id/main_logo"
+        android:gravity="center"
+        android:textSize="25sp"
+        android:textColor="@color/purple_700"
+        android:fontFamily="casual"
+        android:textStyle="bold|italic"
+        />
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:strokeColor="@color/purple_700"
+        app:strokeWidth="1dp"
+        android:layout_below="@id/slogan"
+        android:layout_margin="8dp"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+
+
+            >
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/email_edittext_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/email"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/email_edittext"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/password_edittext_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/email_edittext_layout"
+                android:layout_marginTop="8dp"
+                android:hint="@string/password"
+                app:endIconMode="password_toggle"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
+
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/password_edittext"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/loginButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/password_edittext_layout"
+                android:layout_marginTop="8dp"
+                android:text="@string/log_in"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                android:textStyle="bold"
+
+                />
+
+            <Button
+                android:id="@+id/forgotPasswordButton"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/loginButton"
+                android:layout_marginTop="4dp"
+                android:text="@string/forgotten_password"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                android:textStyle="bold"
+
+
+                />
+            <RelativeLayout
+                android:id="@+id/divider_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/forgotPasswordButton"
+                android:layout_centerVertical="true">
+
+                <TextView
+                    android:id="@+id/tvText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text="OR"
+                    android:textColor="@color/purple_700"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="16dp"
+                    android:layout_toLeftOf="@id/tvText"
+                    android:background="@color/purple_700" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="16dp"
+                    android:layout_toEndOf="@id/tvText"
+                    android:background="@color/purple_700" />
+
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/create_new_account_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/divider_layout"
+                android:layout_marginTop="8dp"
+                android:text="Create New Account"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                android:textStyle="bold"
+
+                />
+
+
+
+        </RelativeLayout>
+
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+
+
+</RelativeLayout>

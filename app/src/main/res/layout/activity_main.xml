@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/main_logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:fontFamily="casual"
+        android:gravity="center"
+        android:text="@string/giveit_icon"
+        android:textColor="@color/purple_700"
+        android:textSize="70sp"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/main_logo"
+        android:fontFamily="casual"
+        android:gravity="center"
+        android:text="Share and Stay Blessed!"
+        android:textColor="@color/purple_700"
+        android:textSize="22sp"
+        android:textStyle="bold|italic" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:padding="8dp"
+        android:orientation="vertical"
+        >
+        <Button
+            android:id="@+id/receiver_button"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="@string/continue_as_a_receiver"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textAllCaps="true"
+
+            style="@style/Widget.Material3.Button"
+            />
+        <Button
+            android:id="@+id/donor_button"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="@string/continue_as_a_donor"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textAllCaps="true"
+            style="@style/Widget.Material3.Button"
+
+            />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

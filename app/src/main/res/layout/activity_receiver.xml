@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ReceiverActivities.ReceiverActivity">
+
+    <ImageView
+        android:id="@+id/vector_charity_art"
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        android:background="@drawable/charity_vector_art" />
+
+    <LinearLayout
+        android:id="@+id/first_category_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/vector_charity_art"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+
+        >
+
+        <com.google.android.material.card.MaterialCardView
+            style="?attr/materialCardViewOutlinedStyle"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:checkable="true"
+            android:clickable="true"
+            android:focusable="true"
+            app:strokeColor="@color/purple_700"
+            app:strokeWidth="1dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/get_a_thing"
+                android:textAllCaps="true"
+                android:textColor="@color/purple_700"
+                android:textSize="20sp"
+
+                />
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            style="?attr/materialCardViewOutlinedStyle"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="8dp"
+
+            android:layout_weight="1"
+            android:checkable="true"
+            android:clickable="true"
+            android:focusable="true"
+            app:strokeColor="@color/purple_700"
+            app:strokeWidth="1dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/apply_for_donation"
+                android:textAllCaps="true"
+                android:textColor="@color/purple_700"
+                android:textSize="20sp"
+
+                />
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/second_category_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/first_category_layout"
+        android:orientation="horizontal"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginTop="12dp"
+
+        >
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            style="?attr/materialCardViewOutlinedStyle"
+            app:strokeColor="@color/purple_700"
+            android:layout_marginEnd="8dp"
+            app:strokeWidth = "1dp"
+            android:checkable="true"
+            android:clickable="true"
+            android:focusable="true">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/events"
+                android:textAllCaps="true"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:textColor="@color/purple_700"
+                android:layout_gravity="center"
+
+                />
+
+
+
+
+
+        </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            style="?attr/materialCardViewOutlinedStyle"
+            app:strokeColor="@color/purple_700"
+            android:layout_marginStart="8dp"
+            app:strokeWidth = "1dp"
+            android:checkable="true"
+            android:clickable="true"
+            android:focusable="true">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/suggestion_box"
+                android:textAllCaps="true"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:textSize="20sp"
+                android:textColor="@color/purple_700"
+
+                />
+
+
+
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>
