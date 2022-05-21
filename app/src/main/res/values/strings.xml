@@ -36,4 +36,8 @@
     <string name="enter_email_to_reset_password">Enter email to reset password...</string>
     <string name="confirm">Confirm</string>
     <string name="cancel">Cancel</string>
+    <string name="remmber_me">Remmber me?</string>
+    <string name="nav_open">Open</string>
+    <string name="nav_close">Close</string>
+
 </resources>

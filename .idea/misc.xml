@@ -3,13 +3,23 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidStudioProjects/GiveItgi/app/src/main/res/drawable/category_icon.xml" value="0.124" />
+        <entry key="..\:/AndroidStudioProjects/GiveItgi/app/src/main/res/drawable/logout_icon.xml" value="0.124" />
+        <entry key="..\:/AndroidStudioProjects/GiveItgi/app/src/main/res/drawable/settings_icon.xml" value="0.124" />
         <entry key="..\:/AndroidStudioProjects/GiveItgi/app/src/main/res/layout-v24/activity_main.xml" value="0.20416666666666666" />
+        <entry key="..\:/AndroidStudioProjects/GiveItgi/app/src/main/res/layout/activity_donor_home.xml" value="0.16" />
         <entry key="..\:/AndroidStudioProjects/GiveItgi/app/src/main/res/layout/activity_donor_login.xml" value="0.20416666666666666" />
         <entry key="..\:/AndroidStudioProjects/GiveItgi/app/src/main/res/layout/activity_donor_register.xml" value="0.20416666666666666" />
+        <entry key="..\:/AndroidStudioProjects/GiveItgi/app/src/main/res/layout/activity_donor_settings.xml" value="0.2" />
         <entry key="..\:/AndroidStudioProjects/GiveItgi/app/src/main/res/layout/activity_main.xml" value="0.18" />
         <entry key="..\:/AndroidStudioProjects/GiveItgi/app/src/main/res/layout/activity_receiver.xml" value="0.19010416666666666" />
         <entry key="..\:/AndroidStudioProjects/GiveItgi/app/src/main/res/layout/activity_reset_password.xml" value="0.22447916666666667" />
+        <entry key="..\:/AndroidStudioProjects/GiveItgi/app/src/main/res/layout/activity_splash.xml" value="0.22447916666666667" />
         <entry key="..\:/AndroidStudioProjects/GiveItgi/app/src/main/res/layout/alert_dialog_layout.xml" value="0.22" />
+        <entry key="..\:/AndroidStudioProjects/GiveItgi/app/src/main/res/layout/app_bar_home.xml" value="0.25" />
+        <entry key="..\:/AndroidStudioProjects/GiveItgi/app/src/main/res/layout/content_home.xml" value="0.22447916666666667" />
+        <entry key="..\:/AndroidStudioProjects/GiveItgi/app/src/main/res/layout/nav_header_home.xml" value="0.22447916666666667" />
+        <entry key="..\:/AndroidStudioProjects/GiveItgi/app/src/main/res/menu/activity_main_drawer.xml" value="0.22447916666666667" />
       </map>
     </option>
   </component>

@@ -103,12 +103,24 @@
 
                 />
 
+            <CheckBox
+                android:id="@+id/remmber_me_checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/loginButton"
+                android:text="@string/remmber_me"
+                android:textSize="16sp"
+                android:textColor="@color/purple_700"
+                android:textStyle="bold"
+                android:buttonTint="@color/purple_700"
+                />
+
             <Button
                 android:id="@+id/forgotPasswordButton"
                 style="@style/Widget.Material3.Button.TextButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/loginButton"
+                android:layout_below="@id/remmber_me_checkbox"
                 android:layout_marginTop="4dp"
                 android:text="@string/forgotten_password"
                 android:textAllCaps="false"
