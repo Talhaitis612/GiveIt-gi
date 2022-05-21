@@ -14,11 +14,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.giveit_gi.Models.Donor;
 import com.example.giveit_gi.R;
 import com.example.giveit_gi.Utils.CONSTANTS;
 import com.example.giveit_gi.Utils.LoadingBar;
-import com.example.giveit_gi.Utils.Prevalent;
 import com.example.giveit_gi.databinding.ActivityDonorLoginBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -26,11 +24,9 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Objects;
 
@@ -40,10 +36,8 @@ public class DonorLoginActivity extends AppCompatActivity implements View.OnClic
     private ActivityDonorLoginBinding binding;
     //    FirebaseAuth for Authentication
     private FirebaseAuth mAuth;
+    private FirebaseFirestore db;
 
-
-    private FirebaseDatabase mDatabase;
-    private DatabaseReference mRef;
 
 
     @Override
@@ -57,10 +51,10 @@ public class DonorLoginActivity extends AppCompatActivity implements View.OnClic
         mAuth = FirebaseAuth.getInstance();
 
 
+
         Paper.init(this);
 
-        mDatabase = FirebaseDatabase.getInstance();
-        mRef = mDatabase.getReference();
+
 
 
 //        Registering all click listeners
@@ -116,6 +110,8 @@ public class DonorLoginActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void userLogin() {
+        if(binding.remmberMeCheckbox.isChecked()){
+        }
         String email = binding.emailEdittext.getText().toString().trim();
         String password = binding.passwordEdittext.getText().toString().trim();
         if (email.isEmpty()) {
@@ -136,23 +132,9 @@ public class DonorLoginActivity extends AppCompatActivity implements View.OnClic
 //           PasswordEncryptionDecryption.decryptPassword(password)
             mAuth.signInWithEmailAndPassword(email, password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                 @Override
-                public synchronized void onSuccess(AuthResult authResult) {
-
-                    mDatabase = FirebaseDatabase.getInstance();
-                    mRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            if(snapshot.child(CONSTANTS.DONOR_COLLECTION_PATH).child(mAuth.getCurrentUser().getUid()).exists()){
-                                Donor donor = snapshot.child(CONSTANTS.DONOR_COLLECTION_PATH).child(mAuth.getCurrentUser().getUid()).getValue(Donor.class);
-                                Prevalent.currentloggedInDonor = donor;
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
+                public void onSuccess(AuthResult authResult) {
+                    Paper.book().write(CONSTANTS.USER_EMAIL_KEY, email);
+                    Paper.book().write(CONSTANTS.USER_PASSWORD_KEY, password);
 
 
                     startActivity(new Intent(DonorLoginActivity.this, DonorHomeActivity.class));

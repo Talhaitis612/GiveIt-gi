@@ -1,22 +1,27 @@
 package com.example.giveit_gi.DonorActivities;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
 import com.example.giveit_gi.MainActivity;
+import com.example.giveit_gi.Models.Donor;
 import com.example.giveit_gi.R;
-import com.example.giveit_gi.Utils.Prevalent;
+import com.example.giveit_gi.Utils.CONSTANTS;
 import com.example.giveit_gi.databinding.ActivityDonorHomeBinding;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.util.Objects;
 
@@ -26,6 +31,9 @@ public class DonorHomeActivity extends AppCompatActivity {
     private ActivityDonorHomeBinding binding;
     private ActionBarDrawerToggle actionBarDrawerToggle;
     FirebaseAuth mAuth;
+    private FirebaseFirestore db;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,20 +44,32 @@ public class DonorHomeActivity extends AppCompatActivity {
         binding.drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
         mAuth = FirebaseAuth.getInstance();
+
         String currentId= mAuth.getCurrentUser().getUid();
         View headerView = binding.navView.getHeaderView(0);
-
         TextView nameEdTextView = (TextView) headerView.findViewById(R.id.user_name);
-        nameEdTextView.setText(Prevalent.currentloggedInDonor.getName());
+
+        db = FirebaseFirestore.getInstance();
+        db.collection(CONSTANTS.DONOR_COLLECTION_PATH).document(currentId).addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
+                CONSTANTS.currentloggedInDonor = new Donor(documentSnapshot.getString("name"),
+                        documentSnapshot.getString("email"),
+                        documentSnapshot.getString("phone"),
+                        "",
+                        documentSnapshot.getString("profilePicture")
+                );
+                nameEdTextView.setText(CONSTANTS.currentloggedInDonor.getName());
+
+            }
+        });
+
+
 
         // to make the Navigation drawer icon always appear on the action bar
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Home");
         binding.navView.setNavigationItemSelectedListener(this::onOptionsItemSelected);
-//        if(!Objects.isNull(Prevalent.currentloggedInDonor)){
-//            TextView nameEditText = (TextView) findViewById(R.id.user_name);
-//            nameEditText.setText(Prevalent.currentloggedInDonor.getName());
-//        }
 
 
     }
@@ -84,5 +104,11 @@ public class DonorHomeActivity extends AppCompatActivity {
 
 
         return true;
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
     }
 }

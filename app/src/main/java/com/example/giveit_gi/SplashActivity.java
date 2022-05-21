@@ -1,22 +1,20 @@
 package com.example.giveit_gi;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 import com.example.giveit_gi.DonorActivities.DonorHomeActivity;
-import com.example.giveit_gi.Utils.Prevalent;
+import com.example.giveit_gi.Utils.CONSTANTS;
 import com.example.giveit_gi.databinding.ActivitySplashBinding;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -48,39 +46,30 @@ public class SplashActivity extends AppCompatActivity {
 
     @Override
     protected void onStart() {
-
+        super.onStart();
         Paper.init(this);
-        String userEmail = Paper.book().read(Prevalent.USER_EMAIL_KEY);
-        String userPassword = Paper.book().read(Prevalent.USER_PASSWORD_KEY);
-        if (!Objects.isNull(userEmail) && !Objects.isNull(userPassword))
-        {
+        String userEmail = Paper.book().read(CONSTANTS.USER_EMAIL_KEY);
+        String userPassword = Paper.book().read(CONSTANTS.USER_PASSWORD_KEY);
+        if (!Objects.isNull(userEmail) && !Objects.isNull(userPassword)) {
             FirebaseAuth mAuth = FirebaseAuth.getInstance();
             assert userEmail != null;
             assert userPassword != null;
-            mAuth.signInWithEmailAndPassword(userEmail, userPassword).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+
+            mAuth.signInWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
-                public void onSuccess(AuthResult authResult) {
+                public void onComplete(@NonNull Task<AuthResult> task) {
                     startActivity(new Intent(SplashActivity.this, DonorHomeActivity.class));
-                    finish();
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
-                    finish();
                 }
             });
-            Prevalent.retrieveUserInformation(mAuth.getCurrentUser().getUid());
-        }
-        else {
+
+
+        } else {
             startActivity(new Intent(SplashActivity.this, MainActivity.class));
             finish();
 
         }
 
-        super.onStart();
-    }
-
-
 
     }
+
+}
