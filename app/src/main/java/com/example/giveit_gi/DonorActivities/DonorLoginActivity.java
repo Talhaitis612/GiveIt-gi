@@ -36,7 +36,6 @@ public class DonorLoginActivity extends AppCompatActivity implements View.OnClic
     private ActivityDonorLoginBinding binding;
     //    FirebaseAuth for Authentication
     private FirebaseAuth mAuth;
-    private FirebaseFirestore db;
 
 
 

@@ -5,6 +5,8 @@ plugins {
 
 android {
     compileSdk 32
+    buildToolsVersion "23.0.3"
+
 
     buildFeatures {
         viewBinding = true
@@ -51,6 +53,10 @@ dependencies {
 //    Circular Image Library
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'com.google.firebase:firebase-database:20.0.5'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
+    implementation 'androidx.navigation:navigation-fragment:2.4.2'
+    implementation 'androidx.navigation:navigation-ui:2.4.2'
 
 
     testImplementation 'junit:junit:4.13.2'

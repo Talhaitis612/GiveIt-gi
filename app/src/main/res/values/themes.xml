@@ -7,6 +7,7 @@
         <item name="colorAccent">@color/purple_200</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
     </style>
+
     <style name="Theme.GiveItgi.ActionBar" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/purple_500</item>
@@ -14,9 +15,19 @@
         <item name="colorAccent">@color/purple_200</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
     </style>
+
     <style name="TextAppearance.GiveIt.Title" parent="TextAppearance.MaterialComponents.Headline4">
         <item name="textAllCaps">true</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">?android:attr/textColorPrimary</item>
     </style>
+
+    <style name="Theme.GiveItgi.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.GiveItgi.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.GiveItgi.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

@@ -13,8 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GiveItgi"
         tools:targetApi="31">
+
         <activity
-            android:name=".DonorSettingsActivity"
+            android:name=".DonorActivities.DonorSettingsActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
@@ -22,7 +23,7 @@
         <activity
             android:name=".DonorActivities.DonorHomeActivity"
             android:exported="true"
-            android:theme="@style/Theme.GiveItgi.ActionBar" />
+            android:theme="@style/Theme.GiveItgi.NoActionBar" />
         <activity
             android:name=".DonorActivities.DonorRegisterActivity"
             android:exported="false"
