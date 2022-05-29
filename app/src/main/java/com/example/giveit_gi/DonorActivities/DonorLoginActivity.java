@@ -132,16 +132,19 @@ public class DonorLoginActivity extends AppCompatActivity implements View.OnClic
             mAuth.signInWithEmailAndPassword(email, password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                 @Override
                 public void onSuccess(AuthResult authResult) {
-                    Paper.book().write(CONSTANTS.USER_EMAIL_KEY, email);
-                    Paper.book().write(CONSTANTS.USER_PASSWORD_KEY, password);
-
+                    if (binding.remmberMeCheckbox.isChecked()){
+                        Paper.book().write(CONSTANTS.USER_EMAIL_KEY, email);
+                        Paper.book().write(CONSTANTS.USER_PASSWORD_KEY, password);
+                    }
 
                     startActivity(new Intent(DonorLoginActivity.this, DonorHomeActivity.class));
+                    finish();
                     Toast.makeText(DonorLoginActivity.this, "LoggedIn Successfully!", Toast.LENGTH_SHORT).show();
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
+                    LoadingBar.hideLoadingBar();
                     Toast.makeText(DonorLoginActivity.this, "Error: "+e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });

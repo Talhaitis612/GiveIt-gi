@@ -13,7 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GiveItgi"
         tools:targetApi="31">
-
+        <activity
+            android:name=".DonorActivities.DonateThingsActivity"
+            android:exported="false" />
         <activity
             android:name=".DonorActivities.DonorSettingsActivity"
             android:exported="false" />

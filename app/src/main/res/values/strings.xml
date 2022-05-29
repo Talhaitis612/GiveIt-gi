@@ -56,5 +56,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="add_donation">add donation</string>
+    <string name="donate_a_thing">Donate a thing</string>
+    <string name="donate_money">Donate Money</string>
+    <string name="add_events">Add Events</string>
+    <string name="categories">Categories</string>
 
 </resources>

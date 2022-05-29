@@ -1,5 +1,6 @@
 package com.example.giveit_gi.DonorActivities.fragments.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,29 +11,37 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.giveit_gi.DonorActivities.DonateThingsActivity;
+import com.example.giveit_gi.R;
 import com.example.giveit_gi.databinding.FragmentHomeBinding;
 
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private FragmentHomeBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        HomeViewModel homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-
-        final TextView textView = binding.textHome;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-        return root;
+        binding.donateAThing.setOnClickListener(this);
+        binding.donateMoney.setOnClickListener(this);
+        binding.addEvent.setOnClickListener(this);
+        binding.suggestionBox.setOnClickListener(this);
+        return binding.getRoot();
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    @Override
+    public void onClick(View view) {
+        int id = view.getId();
+        if (id == R.id.donate_a_thing) {
+            startActivity(new Intent(getActivity(), DonateThingsActivity.class));
+        }
     }
 }

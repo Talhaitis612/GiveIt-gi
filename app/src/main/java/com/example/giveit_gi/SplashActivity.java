@@ -33,12 +33,33 @@ public class SplashActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
         Paper.init(this);
-        Animation animation = AnimationUtils.loadAnimation(this, R.anim.slide_animation);
-        binding.splashScreen.startAnimation(animation);
         //Splash Screen duration
         int secondsDelayed = 1;
         new Handler().postDelayed(new Runnable() {
             public void run() {
+                Paper.init(getApplicationContext());
+                String userEmail = Paper.book().read(CONSTANTS.USER_EMAIL_KEY);
+                String userPassword = Paper.book().read(CONSTANTS.USER_PASSWORD_KEY);
+                if (!Objects.isNull(userEmail) && !Objects.isNull(userPassword)) {
+                    FirebaseAuth mAuth = FirebaseAuth.getInstance();
+                    assert userEmail != null;
+                    assert userPassword != null;
+
+                    mAuth.signInWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            startActivity(new Intent(SplashActivity.this, DonorHomeActivity.class));
+                            finish();
+                        }
+                    });
+
+
+                } else {
+                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                    finish();
+
+                }
+
 
             }
         }, secondsDelayed * 3000);
@@ -47,28 +68,6 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        Paper.init(this);
-        String userEmail = Paper.book().read(CONSTANTS.USER_EMAIL_KEY);
-        String userPassword = Paper.book().read(CONSTANTS.USER_PASSWORD_KEY);
-        if (!Objects.isNull(userEmail) && !Objects.isNull(userPassword)) {
-            FirebaseAuth mAuth = FirebaseAuth.getInstance();
-            assert userEmail != null;
-            assert userPassword != null;
-
-            mAuth.signInWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    startActivity(new Intent(SplashActivity.this, DonorHomeActivity.class));
-                }
-            });
-
-
-        } else {
-            startActivity(new Intent(SplashActivity.this, MainActivity.class));
-            finish();
-
-        }
-
 
     }
 
