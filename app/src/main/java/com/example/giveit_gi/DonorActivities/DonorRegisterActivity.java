@@ -136,7 +136,6 @@ public class DonorRegisterActivity extends AppCompatActivity implements View.OnC
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful()){
-                                        Log.d("Document Added: " , task.getResult().toString());
                                     }
                                 }
                             });
