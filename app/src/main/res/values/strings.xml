@@ -60,5 +60,14 @@
     <string name="donate_money">Donate Money</string>
     <string name="add_events">Add Events</string>
     <string name="categories">Categories</string>
+    <string name="desciption">Description</string>
+    <string name="electronics">Electronics</string>
+    <string name="furnitures">Furnitures</string>
+    <string name="clothes">Clothes</string>
+    <string name="other">Others</string>
+    <string name="category">Category</string>
+    <string name="add_image">Add Image</string>
+    <string name="location">Location</string>
+    <string name="title">Title</string>
 
 </resources>

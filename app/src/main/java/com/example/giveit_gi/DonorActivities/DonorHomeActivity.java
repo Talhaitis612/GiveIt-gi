@@ -115,18 +115,15 @@ public class DonorHomeActivity extends AppCompatActivity {
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.nav_logout:
-                // do whatever
-                Paper.book().destroy();
-                Intent intent = new Intent(DonorHomeActivity.this, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-                finish();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.nav_logout) {// do whatever
+            Paper.book().destroy();
+            Intent intent = new Intent(DonorHomeActivity.this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 
 

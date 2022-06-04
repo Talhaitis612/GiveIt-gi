@@ -62,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:hint="@string/email"
-                app:placeholderText="Enter your name">
+                app:placeholderText="Enter your email">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/email_editText"
