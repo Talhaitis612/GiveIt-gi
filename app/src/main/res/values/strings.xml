@@ -75,5 +75,7 @@
     <string name="category_cannot_be_null">Category cannot be empty.</string>
     <string name="location_cannot_be_null">Location cannot be empty.</string>
     <string name="select_image">Please select an image.</string>
+    <string name="adding">Adding</string>
+    <string name="wait">Please wait while we add ur donation.</string>
 
 </resources>

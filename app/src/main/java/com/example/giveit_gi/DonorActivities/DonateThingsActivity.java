@@ -9,21 +9,28 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.example.giveit_gi.Models.Donation;
 import com.example.giveit_gi.R;
 import com.example.giveit_gi.Utils.CONSTANTS;
 import com.example.giveit_gi.Utils.LoadingBar;
 import com.example.giveit_gi.databinding.ActivityDonateThingsBinding;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
+import com.google.firebase.storage.UploadTask;
 import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.time.LocalDate;
@@ -40,11 +47,16 @@ public class DonateThingsActivity extends AppCompatActivity implements View.OnCl
     private StorageTask uploadTask;
     private String myUrl = "";
 
+    private String currentUserID = "";
+
+    private FirebaseFirestore db;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+
         binding = ActivityDonateThingsBinding.inflate(getLayoutInflater());
         Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.donate_a_thing);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
@@ -54,8 +66,9 @@ public class DonateThingsActivity extends AppCompatActivity implements View.OnCl
         binding.removeImage.setOnClickListener(this);
         binding.addDonationBtn.setOnClickListener(this);
         mAuth = FirebaseAuth.getInstance();
+        currentUserID = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
         storageDonationPicture = FirebaseStorage.getInstance().getReference().child(CONSTANTS.DONATIONS_PICTURES_PATH);
-
+        db = FirebaseFirestore.getInstance();
 
 
     }
@@ -74,18 +87,16 @@ public class DonateThingsActivity extends AppCompatActivity implements View.OnCl
     public void onClick(View view) {
 
         int id = view.getId();
-        if(id == R.id.add_image){
+        if (id == R.id.add_image) {
             CropImage.activity(imageUri)
                     .setAspectRatio(1, 1)
                     .start(DonateThingsActivity.this);
 
-        }
-        else if (id== R.id.remove_image){
+        } else if (id == R.id.remove_image) {
             binding.addImage.setVisibility(View.VISIBLE);
             binding.heroImage.setImageDrawable(getDrawable(R.drawable.place_holder_image));
             binding.removeImage.setVisibility(View.INVISIBLE);
-        }
-        else if(id== R.id.addDonationBtn){
+        } else if (id == R.id.addDonationBtn) {
             saveDonation();
         }
 
@@ -94,7 +105,7 @@ public class DonateThingsActivity extends AppCompatActivity implements View.OnCl
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK && data!=null) {
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             imageUri = result.getUri();
             binding.addImage.setVisibility(View.INVISIBLE);
@@ -102,66 +113,89 @@ public class DonateThingsActivity extends AppCompatActivity implements View.OnCl
             binding.removeImage.setVisibility(View.VISIBLE);
 
 
-        }
-        else {
+        } else {
             Toast.makeText(this, "Error, Try Again.", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(DonateThingsActivity.this, DonateThingsActivity.class));
             finish();
         }
     }
 
-//    To upload Image on
-    void uploadImage(){
-     if(imageUri!=null){
+    //    To upload Image on
+    void uploadImage() {
+        if (imageUri != null) {
+            LoadingBar.showLoadingBar(this, getString(R.string.adding), getString(R.string.wait));
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                final StorageReference fileRef = storageDonationPicture
+                        .child(Objects.requireNonNull(mAuth.getCurrentUser()).getUid() + LocalDateTime.now().toString() + ".jpg");
 
-         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-             final StorageReference fileRef = storageDonationPicture
-                     .child(Objects.requireNonNull(mAuth.getCurrentUser()).getUid()+ LocalDateTime.now().toString()+".jpg");
+                uploadTask = fileRef.putFile(imageUri);
+                uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        if (taskSnapshot.getMetadata() != null) {
+                            if (taskSnapshot.getMetadata().getReference() != null) {
+                                Task<Uri> result = taskSnapshot.getStorage().getDownloadUrl();
+                                result.addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(Uri uri) {
+                                        myUrl = uri.toString();
+                                        Donation donation = new Donation(
+                                                binding.nameEditText.getText().toString().trim(),
+                                                binding.descriptionEditText.getText().toString().trim(),
+                                                binding.categoryEditText.getText().toString().trim(),
+                                                binding.locationEditText.getText().toString().trim(),
+                                                myUrl,
+                                                currentUserID
+                                        );
 
-             uploadTask = fileRef.putFile(imageUri);
-             uploadTask.continueWith(new Continuation() {
-                 @Override
-                 public Object then(@NonNull Task task) throws Exception {
-                     if(!task.isSuccessful()){
-                         throw task.getException();
-                     }
-                     return fileRef.getDownloadUrl();
-                 }
-             }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-                 @Override
-                 public void onComplete(@NonNull Task<Uri> task) {
-                     Uri downloadUrl = task.getResult();
-                     myUrl = downloadUrl.toString();
-                 }
-             });
-         }
-     }
+                                        db.collection(CONSTANTS.DONATION_COLLECTION_PATH)
+                                                .document(CONSTANTS.generateUniqueKey(25)).set(donation)
+                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                        if(task.isSuccessful())
+                                                        {
+                                                            Snackbar.make(binding.getRoot(), "Donation added successfully!", Snackbar.LENGTH_LONG)
+                                                                    .setAction("Action", null).show();
+                                                            startActivity(new Intent(DonateThingsActivity.this, DonorHomeActivity.class));
+                                                            finish();
+                                                        }
+                                                    }
+                                                });
+
+                                    }
+                                });
+                            }
+                        }
+                    }
+                });
+            }
+
+        }
     }
 
-    void saveDonation(){
-        if(TextUtils.isEmpty(binding.nameEditText.getText())){
+    void saveDonation() {
+        if (TextUtils.isEmpty(binding.nameEditText.getText())) {
             binding.nameLayout.setError(getString(R.string.title_cannot_be_null));
         }
-        if(TextUtils.isEmpty(binding.descriptionEditText.getText())){
+        if (TextUtils.isEmpty(binding.descriptionEditText.getText())) {
             binding.descriptionLayout.setError(getString(R.string.description_cannot_be_null));
 
         }
-        if(TextUtils.isEmpty(binding.categoryEditText.getText())){
+        if (TextUtils.isEmpty(binding.categoryEditText.getText())) {
             binding.categoryLayout.setError(getString(R.string.category_cannot_be_null));
 
         }
-        if(TextUtils.isEmpty(binding.locationEditText.getText())){
+        if (TextUtils.isEmpty(binding.locationEditText.getText())) {
             binding.locationLayout.setError(getString(R.string.location_cannot_be_null));
 
         }
-        if(Objects.equals(myUrl, "")){
+        if (Objects.isNull(imageUri)) {
             binding.removeImage.setVisibility(View.VISIBLE);
             binding.removeImage.setText(getText(R.string.select_image));
             binding.removeImage.setTextColor(getResources().getColor(R.color.my_app_error_container));
 
-        }
-
-        else {
+        } else {
             binding.removeImage.setVisibility(View.VISIBLE);
             binding.removeImage.setText(getString(R.string.remove_image));
             binding.nameLayout.setError(null);
@@ -169,7 +203,10 @@ public class DonateThingsActivity extends AppCompatActivity implements View.OnCl
             binding.categoryLayout.setError(null);
             binding.locationLayout.setError(null);
             binding.nameLayout.setError(null);
+            binding.removeImage.setText(getText(R.string.remove_image));
+            binding.removeImage.setTextColor(getResources().getColor(R.color.black));
 
+            uploadImage();
 
         }
 
