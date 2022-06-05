@@ -4,12 +4,12 @@ public class Donation {
 
     private String title, description, category, location, imageURL, donorID;
 
-    public Donation(String title, String description, String category, String location, String imageURL, String donorID) {
+    public Donation(String title, String description,String category, String imageURL, String location, String donorID) {
         this.title = title;
         this.description = description;
         this.category = category;
-        this.location = location;
         this.imageURL = imageURL;
+        this.location = location;
         this.donorID = donorID;
     }
 

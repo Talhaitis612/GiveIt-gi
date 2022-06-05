@@ -27,6 +27,8 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class DonorRegisterActivity extends AppCompatActivity implements View.OnClickListener {
@@ -126,7 +128,8 @@ public class DonorRegisterActivity extends AppCompatActivity implements View.OnC
                 public void onSuccess(AuthResult authResult) {
                     LoadingBar.hideLoadingBar();
                     Toast.makeText(DonorRegisterActivity.this, getString(R.string.account_created_successfully), Toast.LENGTH_SHORT).show();
-                    Donor donor = new Donor(name, email, phone,password, "");
+                    ArrayList<String> myList = new ArrayList<String>();
+                    Donor donor = new Donor(name, email, phone,password,confirmPassword,myList);
                     db.collection(CONSTANTS.DONOR_COLLECTION_PATH)
                             .document(mAuth.getCurrentUser().getUid()).set(donor).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override

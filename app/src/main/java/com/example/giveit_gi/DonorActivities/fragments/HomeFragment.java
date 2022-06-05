@@ -1,4 +1,4 @@
-package com.example.giveit_gi.DonorActivities.fragments.home;
+package com.example.giveit_gi.DonorActivities.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;

@@ -35,6 +35,7 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 import io.paperdb.Paper;
@@ -89,16 +90,23 @@ public class DonorHomeActivity extends AppCompatActivity {
         db.collection(CONSTANTS.DONOR_COLLECTION_PATH).document(currentId).addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
+                assert documentSnapshot != null;
+
+                ArrayList<String> donationList = (ArrayList<String>) documentSnapshot.get("donationList");
+
                 CONSTANTS.currentloggedInDonor = new
                         Donor(
                         documentSnapshot.getString("name"),
                         documentSnapshot.getString("email"),
                         documentSnapshot.getString("phone"),
                         documentSnapshot.getString("password"),
-                        documentSnapshot.getString("profilePicture")
-                );
-                nameEdTextView.setText(CONSTANTS.currentloggedInDonor.getName());
+                        documentSnapshot.getString("profilePicture"),
+                        donationList
 
+                );
+//                nameEdTextView.setText(CONSTANTS.currentloggedInDonor.getName());
+
+                nameEdTextView.setText(documentSnapshot.getString("name"));
             }
         });
 
