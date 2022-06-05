@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
@@ -85,29 +86,24 @@ public class DonorRegisterActivity extends AppCompatActivity implements View.OnC
         String phone = binding.phoneEditText.getText().toString().trim();
         String password = binding.passwordEditText.getText().toString().trim();
         String confirmPassword = binding.confirmPasswordEditText.getText().toString().trim();
-        if (name.isEmpty()) {
+        if (TextUtils.isEmpty(binding.nameEditText.getText())) {
             binding.nameLayout.setError(getString(R.string.err_name_empty));
-            return;
         }
-        if (email.isEmpty()) {
+        if (TextUtils.isEmpty(binding.emailEditText.getText())) {
             binding.emailLayout.setError(getString(R.string.err_email_empty));
-            return;
         }
-        if (phone.isEmpty()) {
-            binding.phoneEditText.setError(getString(R.string.err_phone_empty));
-            return;
+        if (TextUtils.isEmpty(binding.phoneEditText.getText())) {
+            binding.phoneLayout.setError(getString(R.string.err_phone_empty));
+
         }
-        if (password.isEmpty()) {
+        if (TextUtils.isEmpty(binding.passwordEditText.getText())) {
             binding.passwordLayout.setError(getString(R.string.err_password));
-            return;
         }
-        if (confirmPassword.isEmpty()) {
+        if (TextUtils.isEmpty(binding.confirmPasswordEditText.getText())) {
             binding.confirmPasswordLayout.setError(getString(R.string.err_password_confirm));
-            return;
         }
         if (!password.equals(confirmPassword)) {
             binding.confirmPasswordLayout.setError(getString(R.string.err_password_match));
-            return;
         }
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             binding.emailLayout.setError(getString(R.string.err_email_format));

@@ -10,4 +10,6 @@ public class CONSTANTS {
     public static final String USER_PASSWORD_KEY = "PASSWORD";
 
     public static String DONOR_COLLECTION_PATH = "donors";
+
+    public static String DONATIONS_PICTURES_PATH = "donation-pictures";
 }
