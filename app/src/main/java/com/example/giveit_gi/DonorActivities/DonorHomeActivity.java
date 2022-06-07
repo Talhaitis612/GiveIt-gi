@@ -96,6 +96,7 @@ public class DonorHomeActivity extends AppCompatActivity {
 
                 CONSTANTS.currentloggedInDonor = new
                         Donor(
+                        currentId,
                         documentSnapshot.getString("name"),
                         documentSnapshot.getString("email"),
                         documentSnapshot.getString("phone"),
@@ -106,7 +107,7 @@ public class DonorHomeActivity extends AppCompatActivity {
                 );
 //                nameEdTextView.setText(CONSTANTS.currentloggedInDonor.getName());
 
-                nameEdTextView.setText(documentSnapshot.getString("name"));
+                nameEdTextView.setText(CONSTANTS.currentloggedInDonor.getName());
             }
         });
 

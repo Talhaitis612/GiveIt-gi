@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.giveit_gi.DonorActivities.DonorLoginActivity;
+import com.example.giveit_gi.DonorActivities.AuthenticationActivities.DonorLoginActivity;
 import com.example.giveit_gi.ReceiverActivities.ReceiverActivity;
 import com.example.giveit_gi.databinding.ActivityMainBinding;
 

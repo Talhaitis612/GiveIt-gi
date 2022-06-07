@@ -1,4 +1,4 @@
-package com.example.giveit_gi.DonorActivities;
+package com.example.giveit_gi.DonorActivities.CategoriesActivities;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -9,23 +9,24 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.example.giveit_gi.DonorActivities.DonorHomeActivity;
 import com.example.giveit_gi.Models.Donation;
 import com.example.giveit_gi.R;
 import com.example.giveit_gi.Utils.CONSTANTS;
 import com.example.giveit_gi.Utils.LoadingBar;
 import com.example.giveit_gi.databinding.ActivityDonateThingsBinding;
-import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -33,9 +34,8 @@ import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 import com.theartofdev.edmodo.cropper.CropImage;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class DonateThingsActivity extends AppCompatActivity implements View.OnClickListener {
@@ -148,17 +148,29 @@ public class DonateThingsActivity extends AppCompatActivity implements View.OnCl
                                                 currentUserID
                                         );
 
+                                        String generateUniqueKey = CONSTANTS.generateUniqueKey(25);
                                         db.collection(CONSTANTS.DONATION_COLLECTION_PATH)
-                                                .document(CONSTANTS.generateUniqueKey(25)).set(donation)
+                                                .document(generateUniqueKey).set(donation)
                                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                     @Override
                                                     public void onComplete(@NonNull Task<Void> task) {
                                                         if(task.isSuccessful())
                                                         {
+                                                            Toast.makeText(DonateThingsActivity.this, "Donation added successfully!", Toast.LENGTH_SHORT).show();
+
+                                                            ArrayList<String> donationList = CONSTANTS.currentloggedInDonor.getDonationList();
+                                                            donationList.add(generateUniqueKey);
+                                                            CONSTANTS.currentloggedInDonor.setDonationList(donationList);
+                                                            DocumentReference donorRef = db.collection(CONSTANTS.DONOR_COLLECTION_PATH).document(CONSTANTS.currentloggedInDonor.getUid());
+                                                            donorRef.update("donationList", FieldValue.arrayUnion(generateUniqueKey));
+
+
                                                             Snackbar.make(binding.getRoot(), "Donation added successfully!", Snackbar.LENGTH_LONG)
                                                                     .setAction("Action", null).show();
                                                             startActivity(new Intent(DonateThingsActivity.this, DonorHomeActivity.class));
                                                             finish();
+
+
                                                         }
                                                     }
                                                 });

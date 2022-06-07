@@ -1,13 +1,11 @@
-package com.example.giveit_gi.DonorActivities;
+package com.example.giveit_gi.DonorActivities.AuthenticationActivities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Toast;
@@ -15,9 +13,8 @@ import android.widget.Toast;
 import com.example.giveit_gi.R;
 import com.example.giveit_gi.Utils.CONSTANTS;
 import com.example.giveit_gi.Utils.LoadingBar;
-import com.example.giveit_gi.Utils.PasswordEncryptionDecryption;
-import com.example.giveit_gi.databinding.ActivityDonorRegisterBinding;
 import com.example.giveit_gi.Models.Donor;
+import com.example.giveit_gi.databinding.ActivityDonorRegisterBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -28,8 +25,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 public class DonorRegisterActivity extends AppCompatActivity implements View.OnClickListener {
     private ActivityDonorRegisterBinding binding;
@@ -129,7 +124,7 @@ public class DonorRegisterActivity extends AppCompatActivity implements View.OnC
                     LoadingBar.hideLoadingBar();
                     Toast.makeText(DonorRegisterActivity.this, getString(R.string.account_created_successfully), Toast.LENGTH_SHORT).show();
                     ArrayList<String> myList = new ArrayList<String>();
-                    Donor donor = new Donor(name, email, phone,password,confirmPassword,myList);
+                    Donor donor = new Donor(mAuth.getCurrentUser().getUid(),name, email, phone,password,confirmPassword,myList);
                     db.collection(CONSTANTS.DONOR_COLLECTION_PATH)
                             .document(mAuth.getCurrentUser().getUid()).set(donor).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override

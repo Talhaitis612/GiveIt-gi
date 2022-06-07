@@ -1,4 +1,4 @@
-package com.example.giveit_gi.DonorActivities;
+package com.example.giveit_gi.DonorActivities.AuthenticationActivities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.giveit_gi.DonorActivities.DonorHomeActivity;
 import com.example.giveit_gi.R;
 import com.example.giveit_gi.Utils.CONSTANTS;
 import com.example.giveit_gi.Utils.LoadingBar;
@@ -24,11 +25,6 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.Objects;
 
 import io.paperdb.Paper;
 

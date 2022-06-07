@@ -5,13 +5,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
-import com.example.giveit_gi.DonorActivities.DonateThingsActivity;
+import com.example.giveit_gi.DonorActivities.CategoriesActivities.DonateThingsActivity;
 import com.example.giveit_gi.R;
 import com.example.giveit_gi.databinding.FragmentHomeBinding;
 

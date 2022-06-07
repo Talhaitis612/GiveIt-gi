@@ -14,7 +14,7 @@
         android:theme="@style/Theme.GiveItgi"
         tools:targetApi="31">
         <activity
-            android:name=".DonorActivities.DonateThingsActivity"
+            android:name=".DonorActivities.CategoriesActivities.DonateThingsActivity"
             android:exported="false"
             android:theme="@style/Theme.GiveItgi.ActionBar"
             android:windowSoftInputMode="adjustPan|adjustResize"
@@ -31,11 +31,11 @@
             android:exported="true"
             android:theme="@style/Theme.GiveItgi.NoActionBar" />
         <activity
-            android:name=".DonorActivities.DonorRegisterActivity"
+            android:name=".DonorActivities.AuthenticationActivities.DonorRegisterActivity"
             android:exported="false"
             android:theme="@style/Theme.GiveItgi.ActionBar" />
         <activity
-            android:name=".DonorActivities.DonorLoginActivity"
+            android:name=".DonorActivities.AuthenticationActivities.DonorLoginActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustPan|adjustResize" />
         <activity
