@@ -10,6 +10,11 @@
         android:name="com.example.giveit_gi.DonorActivities.fragments.HomeFragment"
         android:label="@string/categories"
         tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/nav_all_donation"
+        android:name="com.example.giveit_gi.DonorActivities.fragments.DonationListFragment"
+        android:label="@string/all_donation"
+        tools:layout="@layout/fragment_donation_list" />
 
 
 </navigation>

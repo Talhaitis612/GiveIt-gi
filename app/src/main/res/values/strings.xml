@@ -77,5 +77,6 @@
     <string name="select_image">Please select an image.</string>
     <string name="adding">Adding</string>
     <string name="wait">Please wait while we add ur donation.</string>
+    <string name="all_donation">All donations</string>
 
 </resources>
