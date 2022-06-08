@@ -2,9 +2,10 @@ package com.example.giveit_gi.Models;
 
 public class Donation {
 
-    private String title, description, category, location, imageURL, donorID;
+    private String donationID,title, description, category, location, imageURL, donorID;
 
-    public Donation(String title, String description,String category, String imageURL, String location, String donorID) {
+    public Donation(String donationID,String title, String description,String category, String imageURL, String location, String donorID) {
+        this.donationID = donationID;
         this.title = title;
         this.description = description;
         this.category = category;
@@ -13,9 +14,18 @@ public class Donation {
         this.donorID = donorID;
     }
 
+    public String getDonationID() {
+        return donationID;
+    }
+
+    public void setDonationID(String donationID) {
+        this.donationID = donationID;
+    }
+
     public String getTitle() {
         return title;
     }
+
 
     public void setTitle(String title) {
         this.title = title;

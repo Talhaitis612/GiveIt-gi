@@ -139,7 +139,10 @@ public class DonateThingsActivity extends AppCompatActivity implements View.OnCl
                                     @Override
                                     public void onSuccess(Uri uri) {
                                         myUrl = uri.toString();
+                                        String generateUniqueKey = CONSTANTS.generateUniqueKey(25);
+
                                         Donation donation = new Donation(
+                                                generateUniqueKey,
                                                 binding.nameEditText.getText().toString().trim(),
                                                 binding.descriptionEditText.getText().toString().trim(),
                                                 binding.categoryEditText.getText().toString().trim(),
@@ -148,7 +151,6 @@ public class DonateThingsActivity extends AppCompatActivity implements View.OnCl
                                                 currentUserID
                                         );
 
-                                        String generateUniqueKey = CONSTANTS.generateUniqueKey(25);
                                         db.collection(CONSTANTS.DONATION_COLLECTION_PATH)
                                                 .document(generateUniqueKey).set(donation)
                                                 .addOnCompleteListener(new OnCompleteListener<Void>() {

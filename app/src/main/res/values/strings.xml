@@ -78,5 +78,8 @@
     <string name="adding">Adding</string>
     <string name="wait">Please wait while we add ur donation.</string>
     <string name="all_donation">All donations</string>
+    <string name="title_of_donation">Title of donation</string>
+    <string name="update">Update</string>
+    <string name="delete">Delete</string>
 
 </resources>

@@ -7,9 +7,12 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="off_white">#BCBCBC</color>
+    <color name="blue">#03A9F4</color>
 
     <color name="white">#FFFFFFFF</color>
     <color name="my_app_error_container">#FA0000</color>
+    <color name="red">#FA0000</color>
+
     <color name="my_app_on_error_container">#FF4B4B</color>
     <color name="my_app_outline">#FF3700B3</color>
 

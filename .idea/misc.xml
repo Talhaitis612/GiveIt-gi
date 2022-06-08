@@ -7,6 +7,7 @@
         <entry key="..\:/AndroidStudioProjects/GiveItgi/app/src/main/res/drawable/corner_radius.xml" value="0.105" />
         <entry key="..\:/AndroidStudioProjects/GiveItgi/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/GiveItgi/app/src/main/res/drawable/ic_baseline_add_circle_outline_24.xml" value="0.105" />
+        <entry key="..\:/AndroidStudioProjects/GiveItgi/app/src/main/res/drawable/ic_baseline_edit_24.xml" value="0.105" />
         <entry key="..\:/AndroidStudioProjects/GiveItgi/app/src/main/res/drawable/logout_icon.xml" value="0.124" />
         <entry key="..\:/AndroidStudioProjects/GiveItgi/app/src/main/res/drawable/outline_spinner.xml" value="0.105" />
         <entry key="..\:/AndroidStudioProjects/GiveItgi/app/src/main/res/drawable/settings_icon.xml" value="0.124" />
@@ -25,7 +26,7 @@
         <entry key="..\:/AndroidStudioProjects/GiveItgi/app/src/main/res/layout/app_bar_home.xml" value="0.14" />
         <entry key="..\:/AndroidStudioProjects/GiveItgi/app/src/main/res/layout/content_donor_main.xml" value="0.20416666666666666" />
         <entry key="..\:/AndroidStudioProjects/GiveItgi/app/src/main/res/layout/content_home.xml" value="0.18" />
-        <entry key="..\:/AndroidStudioProjects/GiveItgi/app/src/main/res/layout/donation_item_layout.xml" value="0.20416666666666666" />
+        <entry key="..\:/AndroidStudioProjects/GiveItgi/app/src/main/res/layout/donation_item_layout.xml" value="0.2" />
         <entry key="..\:/AndroidStudioProjects/GiveItgi/app/src/main/res/layout/fragment_donation_dialog.xml" value="0.20416666666666666" />
         <entry key="..\:/AndroidStudioProjects/GiveItgi/app/src/main/res/layout/fragment_donation_list.xml" value="0.20416666666666666" />
         <entry key="..\:/AndroidStudioProjects/GiveItgi/app/src/main/res/layout/fragment_home.xml" value="0.16" />
