@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,8 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.giveit_gi.Models.Donation;
 import com.example.giveit_gi.R;
+import com.example.giveit_gi.Utils.CONSTANTS;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class DonationAdapter extends RecyclerView.Adapter<DonationAdapter.DonationViewHolder> {
 
@@ -38,6 +41,9 @@ public class DonationAdapter extends RecyclerView.Adapter<DonationAdapter.Donati
     public void onBindViewHolder(@NonNull DonationAdapter.DonationViewHolder holder, int position) {
 
         Donation donation = donationArrayList.get(position);
+        if(Objects.equals(donation.getDonorID(), CONSTANTS.currentloggedInDonor.getUid())){
+            holder.buttonLayout.setVisibility(View.VISIBLE);
+        }
         Glide.with(context).load(donation.getImageURL()).into(holder.donationImageView);
         holder.txtDonationTitle.setText(donation.getTitle());
         holder.txtDonationDescription.setText(donation.getDescription());
@@ -54,6 +60,7 @@ public class DonationAdapter extends RecyclerView.Adapter<DonationAdapter.Donati
     public static class DonationViewHolder extends RecyclerView.ViewHolder {
         public TextView txtDonationTitle,txtDonationDescription,txtDonationCategory, txtLocation;
         public ImageView donationImageView;
+        public LinearLayout buttonLayout;
 
         public DonationViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -62,6 +69,7 @@ public class DonationAdapter extends RecyclerView.Adapter<DonationAdapter.Donati
             txtDonationCategory = itemView.findViewById(R.id.donation_category);
             txtLocation = itemView.findViewById(R.id.donation_location);
             donationImageView = itemView.findViewById(R.id.donation_image);
+            buttonLayout = itemView.findViewById(R.id.buttonLayout);
 
         }
     }

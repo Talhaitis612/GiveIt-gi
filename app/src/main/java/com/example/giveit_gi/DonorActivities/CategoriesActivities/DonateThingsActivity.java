@@ -146,8 +146,8 @@ public class DonateThingsActivity extends AppCompatActivity implements View.OnCl
                                                 binding.nameEditText.getText().toString().trim(),
                                                 binding.descriptionEditText.getText().toString().trim(),
                                                 binding.categoryEditText.getText().toString().trim(),
-                                                binding.locationEditText.getText().toString().trim(),
                                                 myUrl,
+                                                binding.locationEditText.getText().toString().trim(),
                                                 currentUserID
                                         );
 

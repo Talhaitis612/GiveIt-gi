@@ -4,6 +4,10 @@ public class Donation {
 
     private String donationID,title, description, category, location, imageURL, donorID;
 
+    public Donation() {
+
+    }
+
     public Donation(String donationID,String title, String description,String category, String imageURL, String location, String donorID) {
         this.donationID = donationID;
         this.title = title;

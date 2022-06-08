@@ -1,5 +1,6 @@
 package com.example.giveit_gi.DonorActivities.fragments;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -33,19 +34,25 @@ public class DonationListFragment extends Fragment {
     private FirebaseFirestore db;
     ArrayList<Donation> donationArrayList;
     DonationAdapter donationAdapter;
+    ProgressDialog progressDialog;
 
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        
+        progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage("Fetching donation List...");
+        progressDialog.show();
+
         binding = FragmentDonationListBinding.inflate(inflater, container, false);
         binding.donationRecycler.setHasFixedSize(true);
         binding.donationRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
         db = FirebaseFirestore.getInstance();
         donationArrayList = new ArrayList<Donation>();
         donationAdapter = new DonationAdapter(getContext(), donationArrayList);
+        binding.donationRecycler.setAdapter(donationAdapter);
         loadDonationList();
 
 
@@ -59,6 +66,9 @@ public class DonationListFragment extends Fragment {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                         if(error != null){
+                            if(progressDialog.isShowing()){
+                                progressDialog.dismiss();
+                            }
                             Log.e("Firebase Error: ", error.getMessage());
                             return;
                         }
@@ -69,6 +79,9 @@ public class DonationListFragment extends Fragment {
 
                             }
                             donationAdapter.notifyDataSetChanged();
+                            if(progressDialog.isShowing()){
+                                progressDialog.dismiss();
+                            }
                         }
                     }
                 });
