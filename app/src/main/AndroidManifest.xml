@@ -14,12 +14,19 @@
         android:theme="@style/Theme.GiveItgi"
         tools:targetApi="31">
         <activity
+            android:name=".DonorActivities.CRUD.ViewDonationActivity"
+            android:exported="false"
+            android:theme="@style/Theme.GiveItgi.ActionBar"
+
+            />
+        <activity
+            android:name=".DonorActivities.CRUD.UpdateDonationActivity"
+            android:exported="false" />
+        <activity
             android:name=".DonorActivities.CategoriesActivities.DonateThingsActivity"
             android:exported="false"
             android:theme="@style/Theme.GiveItgi.ActionBar"
-            android:windowSoftInputMode="adjustPan|adjustResize"
-
-            />
+            android:windowSoftInputMode="adjustPan|adjustResize" />
         <activity
             android:name=".DonorActivities.DonorSettingsActivity"
             android:exported="false" />

@@ -20,6 +20,19 @@ public class CONSTANTS {
 
     public static final String ALLOWED_CHARACTERS ="0123456789qwertyuiopasdfghjklzxcvbnmabcdefgh";
 
+//  FOR INTENT
+    public static final String DONOR_ID = "donorID";
+
+    public static final String DONATION_ID = "donationID";
+    public static final String DONATION_TITLE = "donationTitle";
+    public static final String DONATION_DESCRIPTION = "donationDescription";
+    public static final String DONATION_CATEGORY = "donationCategory";
+    public static final String DONATION_LOCATION = "donationLocation";
+    public static final String DONATION_IMAGE_URL = "donationImageURL";
+
+
+
+
     public static String generateUniqueKey(final int sizeOfRandomString)
     {
         final Random random=new Random();
@@ -28,5 +41,7 @@ public class CONSTANTS {
             sb.append(ALLOWED_CHARACTERS.charAt(random.nextInt(ALLOWED_CHARACTERS.length())));
         return sb.toString();
     }
+
+
 
 }

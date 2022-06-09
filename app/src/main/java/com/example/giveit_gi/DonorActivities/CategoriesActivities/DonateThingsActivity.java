@@ -42,9 +42,10 @@ public class DonateThingsActivity extends AppCompatActivity implements View.OnCl
     private ActivityDonateThingsBinding binding;
     private Uri imageUri;
 
-    private StorageReference storageDonationPicture;
     private FirebaseAuth mAuth;
     private StorageTask uploadTask;
+    private StorageReference storageDonationPicture;
+
     private String myUrl = "";
 
     private String currentUserID = "";

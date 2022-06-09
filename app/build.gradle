@@ -64,6 +64,8 @@ dependencies {
 //    For loading Image from URL
     implementation 'com.github.bumptech.glide:glide:4.13.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.0'
+//  GSON
+    implementation 'com.google.code.gson:gson:2.8.9'
 
 
     testImplementation 'junit:junit:4.13.2'
