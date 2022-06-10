@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.giveit_gi.DonorActivities.Adapters.DonationAdapter;
 import com.example.giveit_gi.DonorActivities.CRUD.ViewDonationActivity;
@@ -24,11 +25,14 @@ import com.example.giveit_gi.Models.Donation;
 import com.example.giveit_gi.R;
 import com.example.giveit_gi.Utils.CONSTANTS;
 import com.example.giveit_gi.databinding.FragmentDonationListBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.SimpleDateFormat;
@@ -86,38 +90,42 @@ public class  DonationListFragment extends Fragment implements ItemClickListener
     private void loadDonationList() {
         db.collection(CONSTANTS.DONATION_COLLECTION_PATH)
                 .orderBy("createdAt", Query.Direction.DESCENDING )
+                .whereEqualTo("isDonated", false)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
-                    @SuppressLint("NotifyDataSetChanged")
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                        if(error != null){
+                     if(error!=null){
+                         Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_LONG).show();
+                         Log.e("ERROR", error.getMessage());
+                         if(progressDialog.isShowing()){
+                                progressDialog.dismiss();
+                            }
+                         return;
+                     }
+                     for (QueryDocumentSnapshot doc: value){
+                             Donation donation = new Donation(
+                                     doc.getString("donationID"),
+                                     doc.getString("title"),
+                                     doc.getString("description"),
+                                     doc.getString("category"),
+                                     doc.getString("imageURL"),
+                                     doc.getString("location"),
+                                     doc.getString("donorID"),
+                                     doc.getBoolean("isDonated"),
+                                     doc.getDate("createdAt")
+                                     );
+                             donationArrayList.add(donation);
+                             donationAdapter.notifyDataSetChanged();
                             if(progressDialog.isShowing()){
                                 progressDialog.dismiss();
                             }
-                            Log.e("Firebase Error: ", error.getMessage());
-                            return;
-                        }
 
-                        for (DocumentChange dc: value.getDocumentChanges()){
-                            if(dc.getType() == DocumentChange.Type.ADDED){
-                                donationArrayList.add(dc.getDocument().toObject(Donation.class));
 
-                            }
-                            if(dc.getType()== DocumentChange.Type.REMOVED){
-                                donationAdapter.notifyDataSetChanged();
+                     }
 
-                            }
-                            if(dc.getType()== DocumentChange.Type.MODIFIED){
-                                donationAdapter.notifyDataSetChanged();
-
-                            }
-                            donationAdapter.notifyDataSetChanged();
-                            if(progressDialog.isShowing()){
-                                progressDialog.dismiss();
-                            }
-                        }
                     }
                 });
+
     }
 
     @Override

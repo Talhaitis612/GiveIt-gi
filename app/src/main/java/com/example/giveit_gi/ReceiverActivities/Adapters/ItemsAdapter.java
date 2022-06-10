@@ -19,6 +19,7 @@ import com.example.giveit_gi.Models.Donation;
 import com.example.giveit_gi.R;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.DonationViewHolder>  {
@@ -59,7 +60,16 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.DonationView
         holder.txtDonationDescription.setText(donation.getDescription());
         holder.txtDonationCategory.setText(donation.getCategory());
         holder.txtLocation.setText(donation.getLocation());
+        SimpleDateFormat format = new SimpleDateFormat("EEEE, MMMM d, yyyy 'at' h:mm a");
 
+        holder.txtCreatedAt.setText(format.format(donation.getCreatedAt()));
+
+        holder.getThingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,7 +85,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.DonationView
     }
 
     public static class DonationViewHolder extends RecyclerView.ViewHolder {
-        public TextView txtDonationTitle,txtDonationDescription,txtDonationCategory, txtLocation;
+        public TextView txtDonationTitle,txtDonationDescription,txtDonationCategory, txtLocation, txtCreatedAt;
         public ImageView donationImageView;
         Button getThingButton;
         private ItemClickListener clickListener;
@@ -86,8 +96,9 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.DonationView
             txtDonationDescription = itemView.findViewById(R.id.donation_description);
             txtDonationCategory = itemView.findViewById(R.id.donation_category);
             txtLocation = itemView.findViewById(R.id.donation_location);
+            txtCreatedAt = itemView.findViewById(R.id.donation_time);
             donationImageView = itemView.findViewById(R.id.donation_image);
-            getThingButton = itemView.findViewById(R.id.getThingButton);
+            getThingButton = itemView.findViewById(R.id.getitemButton);
 
 
 
