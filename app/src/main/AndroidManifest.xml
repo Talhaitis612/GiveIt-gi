@@ -14,11 +14,14 @@
         android:theme="@style/Theme.GiveItgi"
         tools:targetApi="31">
         <activity
-            android:name=".DonorActivities.CRUD.ViewDonationActivity"
+            android:name=".ReceiverActivities.CategoriesActivities.ItemListActivity"
             android:exported="false"
             android:theme="@style/Theme.GiveItgi.ActionBar"
-
             />
+        <activity
+            android:name=".DonorActivities.CRUD.ViewDonationActivity"
+            android:exported="false"
+            android:theme="@style/Theme.GiveItgi.ActionBar" />
         <activity
             android:name=".DonorActivities.CRUD.UpdateDonationActivity"
             android:exported="false" />

@@ -84,5 +84,7 @@
     <string name="do_you_really_want_to_delete">Are you sure you want to delete this donation?</string>
     <string name="sure">Yes</string>
     <string name="add_new_image">Add New Image</string>
+    <string name="your_history">History</string>
+    <string name="created_at">Created At</string>
 
 </resources>

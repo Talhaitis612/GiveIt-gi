@@ -1,5 +1,6 @@
 package com.example.giveit_gi.DonorActivities.Adapters;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -31,6 +32,8 @@ import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -58,17 +61,25 @@ public class DonationAdapter extends RecyclerView.Adapter<DonationAdapter.Donati
     }
 
     @Override
-    public void onBindViewHolder(@NonNull DonationAdapter.DonationViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull DonationAdapter.DonationViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         Donation donation = donationArrayList.get(position);
         if(Objects.equals(donation.getDonorID(), CONSTANTS.currentloggedInDonor.getUid())){
             holder.buttonLayout.setVisibility(View.VISIBLE);
         }
+
+
+
         Glide.with(context).load(donation.getImageURL()).into(holder.donationImageView);
         holder.txtDonationTitle.setText(donation.getTitle());
         holder.txtDonationDescription.setText(donation.getDescription());
         holder.txtDonationCategory.setText(donation.getCategory());
         holder.txtLocation.setText(donation.getLocation());
+        @SuppressLint({"NewApi", "LocalSuppress"})
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        SimpleDateFormat format = new SimpleDateFormat("EEEE, MMMM d, yyyy 'at' h:mm a");
+
+        holder.txtDate.setText(format.format(donation.getCreatedAt()));
         holder.deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -127,6 +138,8 @@ public class DonationAdapter extends RecyclerView.Adapter<DonationAdapter.Donati
                 intent.putExtra(CONSTANTS.DONATION_CATEGORY, donation.getCategory());
                 intent.putExtra(CONSTANTS.DONATION_LOCATION, donation.getLocation());
                 intent.putExtra(CONSTANTS.DONATION_IMAGE_URL, donation.getImageURL());
+                intent.putExtra(CONSTANTS.DONATION_TIME, donation.getCreatedAt());
+
 
                 context.startActivity(intent);
             }
@@ -147,11 +160,10 @@ public class DonationAdapter extends RecyclerView.Adapter<DonationAdapter.Donati
     }
 
     public static class DonationViewHolder extends RecyclerView.ViewHolder {
-        public TextView txtDonationTitle,txtDonationDescription,txtDonationCategory, txtLocation;
+        public TextView txtDonationTitle,txtDonationDescription,txtDonationCategory, txtLocation, txtDate;
         public ImageView donationImageView;
         public LinearLayout buttonLayout;
         Button deleteButton, updateButton;
-        private ItemClickListener clickListener;
 
         public DonationViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -159,10 +171,12 @@ public class DonationAdapter extends RecyclerView.Adapter<DonationAdapter.Donati
             txtDonationDescription = itemView.findViewById(R.id.donation_description);
             txtDonationCategory = itemView.findViewById(R.id.donation_category);
             txtLocation = itemView.findViewById(R.id.donation_location);
+            txtDate = itemView.findViewById(R.id.donation_time);
             donationImageView = itemView.findViewById(R.id.donation_image);
             buttonLayout = itemView.findViewById(R.id.buttonLayout);
             deleteButton = itemView.findViewById(R.id.deleteButton);
             updateButton  = itemView.findViewById(R.id.updateButton);
+
 
 
 

@@ -24,6 +24,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
@@ -32,10 +33,12 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
+import com.google.type.DateTime;
 import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Objects;
 
 public class DonateThingsActivity extends AppCompatActivity implements View.OnClickListener {
@@ -149,7 +152,10 @@ public class DonateThingsActivity extends AppCompatActivity implements View.OnCl
                                                 binding.categoryEditText.getText().toString().trim(),
                                                 myUrl,
                                                 binding.locationEditText.getText().toString().trim(),
-                                                currentUserID
+                                                currentUserID,
+                                                false,
+                                                Calendar.getInstance().getTime()
+
                                         );
 
                                         db.collection(CONSTANTS.DONATION_COLLECTION_PATH)

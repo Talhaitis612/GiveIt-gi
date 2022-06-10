@@ -31,6 +31,8 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 
@@ -83,7 +85,7 @@ public class  DonationListFragment extends Fragment implements ItemClickListener
 
     private void loadDonationList() {
         db.collection(CONSTANTS.DONATION_COLLECTION_PATH)
-                .orderBy("title", Query.Direction.ASCENDING)
+                .orderBy("createdAt", Query.Direction.DESCENDING )
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @SuppressLint("NotifyDataSetChanged")
                     @Override
@@ -128,11 +130,16 @@ public class  DonationListFragment extends Fragment implements ItemClickListener
     public void onClick(View view, int position) {
         final Donation donation = donationArrayList.get(position);
         Intent intent = new Intent(getActivity(), ViewDonationActivity.class);
+        intent.putExtra(CONSTANTS.DONATION_ID, donation.getDonationID());
+
         intent.putExtra(CONSTANTS.DONOR_ID, donation.getDonorID());
         intent.putExtra(CONSTANTS.DONATION_TITLE, donation.getTitle());
         intent.putExtra(CONSTANTS.DONATION_DESCRIPTION, donation.getDescription());
         intent.putExtra(CONSTANTS.DONATION_CATEGORY, donation.getCategory());
         intent.putExtra(CONSTANTS.DONATION_LOCATION, donation.getLocation());
+        @SuppressLint("SimpleDateFormat")
+        SimpleDateFormat format = new SimpleDateFormat("EEEE, MMMM d, yyyy 'at' h:mm a");
+        intent.putExtra(CONSTANTS.DONATION_TIME, format.format(donation.getCreatedAt()));
         intent.putExtra(CONSTANTS.DONATION_IMAGE_URL, donation.getImageURL());
         startActivity(intent);
 

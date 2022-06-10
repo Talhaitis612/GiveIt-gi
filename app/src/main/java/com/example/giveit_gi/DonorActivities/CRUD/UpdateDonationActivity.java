@@ -26,6 +26,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -37,6 +38,7 @@ import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Objects;
 
 public class UpdateDonationActivity extends AppCompatActivity  {
@@ -150,16 +152,18 @@ public class UpdateDonationActivity extends AppCompatActivity  {
                                             binding.categoryEditText.getText().toString().trim(),
                                             myUrl,
                                             binding.locationEditText.getText().toString().trim(),
-                                            donorID
+                                            donorID,
+                                            false,
+                                            Calendar.getInstance().getTime()
                                     );
                                     db.collection(CONSTANTS.DONATION_COLLECTION_PATH)
-                                            .document(donationID)
+                                            .document(donation.getDonationID())
                                             .set(donation).addOnSuccessListener(new OnSuccessListener<Void>() {
                                                 @Override
                                                 public void onSuccess(Void unused) {
                                                     LoadingBar.hideLoadingBar();
                                                     Toast.makeText(UpdateDonationActivity.this, "Donation Updated Successfully!", Toast.LENGTH_SHORT).show();
-                                                    startActivity(new Intent(UpdateDonationActivity.this, DonorHomeActivity.class));
+                                                    finish();
                                                 }
                                             })
                                             .addOnFailureListener(new OnFailureListener() {
@@ -189,7 +193,9 @@ public class UpdateDonationActivity extends AppCompatActivity  {
                     binding.categoryEditText.getText().toString().trim(),
                     imageURL,
                     binding.locationEditText.getText().toString().trim(),
-                    donorID
+                    donorID,
+                    false,
+                    Calendar.getInstance().getTime()
             );
             db.collection(CONSTANTS.DONATION_COLLECTION_PATH)
                     .document(donationID)
@@ -198,8 +204,7 @@ public class UpdateDonationActivity extends AppCompatActivity  {
                         public void onSuccess(Void unused) {
                             LoadingBar.hideLoadingBar();
                             Toast.makeText(UpdateDonationActivity.this, "Donation Updated Successfully!", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(UpdateDonationActivity.this, DonorHomeActivity.class));
-
+                            finish();
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {

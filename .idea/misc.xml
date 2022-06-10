@@ -18,6 +18,7 @@
         <entry key="..\:/AndroidStudioProjects/GiveItgi/app/src/main/res/layout/activity_donor_login.xml" value="0.20416666666666666" />
         <entry key="..\:/AndroidStudioProjects/GiveItgi/app/src/main/res/layout/activity_donor_register.xml" value="0.20416666666666666" />
         <entry key="..\:/AndroidStudioProjects/GiveItgi/app/src/main/res/layout/activity_donor_settings.xml" value="0.2" />
+        <entry key="..\:/AndroidStudioProjects/GiveItgi/app/src/main/res/layout/activity_get_thing.xml" value="0.18" />
         <entry key="..\:/AndroidStudioProjects/GiveItgi/app/src/main/res/layout/activity_main.xml" value="0.18" />
         <entry key="..\:/AndroidStudioProjects/GiveItgi/app/src/main/res/layout/activity_receiver.xml" value="0.19010416666666666" />
         <entry key="..\:/AndroidStudioProjects/GiveItgi/app/src/main/res/layout/activity_reset_password.xml" value="0.22447916666666667" />
@@ -34,6 +35,7 @@
         <entry key="..\:/AndroidStudioProjects/GiveItgi/app/src/main/res/layout/fragment_home.xml" value="0.16" />
         <entry key="..\:/AndroidStudioProjects/GiveItgi/app/src/main/res/layout/nav_header_donor_main.xml" value="0.20416666666666666" />
         <entry key="..\:/AndroidStudioProjects/GiveItgi/app/src/main/res/layout/nav_header_home.xml" value="0.22447916666666667" />
+        <entry key="..\:/AndroidStudioProjects/GiveItgi/app/src/main/res/layout/thing_item_layout.xml" value="0.18" />
         <entry key="..\:/AndroidStudioProjects/GiveItgi/app/src/main/res/menu/activity_main_drawer.xml" value="0.22447916666666667" />
         <entry key="..\:/AndroidStudioProjects/GiveItgi/app/src/main/res/menu/donor_main.xml" value="0.20416666666666666" />
         <entry key="..\:/AndroidStudioProjects/GiveItgi/app/src/main/res/menu/more_options.xml" value="0.20416666666666666" />

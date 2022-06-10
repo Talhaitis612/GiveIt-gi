@@ -32,9 +32,7 @@ public class MainActivity extends AppCompatActivity {
             binding.receiverButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(MainActivity.this, ReceiverActivity.class);
-                    startActivity(intent);
-                    finish();
+                    startActivity(new Intent(MainActivity.this, ReceiverActivity.class));
                 }
             });
 

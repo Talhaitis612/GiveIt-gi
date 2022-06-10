@@ -92,6 +92,30 @@
 
 
                     </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+
+                        >
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_baseline_calendar_month_24"
+                            />
+                        <TextView
+                            android:id="@+id/donation_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/created_at"
+                            android:textSize="16sp"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:layout_marginStart="10dp"
+                            />
+
+
+                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="wrap_content"

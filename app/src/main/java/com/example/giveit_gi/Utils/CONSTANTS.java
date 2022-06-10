@@ -29,6 +29,7 @@ public class CONSTANTS {
     public static final String DONATION_CATEGORY = "donationCategory";
     public static final String DONATION_LOCATION = "donationLocation";
     public static final String DONATION_IMAGE_URL = "donationImageURL";
+    public static final String DONATION_TIME = "donationTime";
 
 
 
