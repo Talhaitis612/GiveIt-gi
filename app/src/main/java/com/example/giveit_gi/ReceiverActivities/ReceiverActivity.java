@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.giveit_gi.R;
+import com.example.giveit_gi.ReceiverActivities.CategoriesActivities.ApplyfordonationActivity;
 import com.example.giveit_gi.ReceiverActivities.CategoriesActivities.ItemListActivity;
 import com.example.giveit_gi.databinding.ActivityReceiverBinding;
 
@@ -46,6 +47,11 @@ public class ReceiverActivity extends AppCompatActivity implements View.OnClickL
 
             startActivity(new Intent(ReceiverActivity.this, ItemListActivity.class));
         }
+        if(id == R.id.apply_for_donation){
+            startActivity(new Intent(ReceiverActivity.this, ApplyfordonationActivity.class));
+
+        }
+
 
     }
 }

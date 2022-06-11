@@ -78,6 +78,7 @@ public class ItemListActivity extends AppCompatActivity implements ItemClickList
             }
         });
 
+
     }
 
     private void loadItemsList() {
@@ -85,6 +86,7 @@ public class ItemListActivity extends AppCompatActivity implements ItemClickList
                 .orderBy("createdAt", Query.Direction.DESCENDING )
                 .whereEqualTo("isDonated", false)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @SuppressLint("NotifyDataSetChanged")
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                         if(error!=null){
@@ -95,6 +97,7 @@ public class ItemListActivity extends AppCompatActivity implements ItemClickList
                             }
                             return;
                         }
+                        assert value != null;
                         for (QueryDocumentSnapshot doc: value){
                             Donation donation = new Donation(
                                     doc.getString("donationID"),

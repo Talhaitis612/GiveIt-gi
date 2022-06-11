@@ -15,6 +15,12 @@ public class CONSTANTS {
 
     public static final String DONATION_COLLECTION_PATH = "donation";
 
+    public static final String REQUEST_ITEM_COLLECTION_PATH = "requested-donation";
+
+    public static final String APPLY_ITEM_COLLECTION_PATH = "applied-donation";
+
+
+
 
     public static final String DONATIONS_PICTURES_PATH = "donation-pictures";
 

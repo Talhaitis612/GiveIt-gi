@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.example.giveit_gi.R;
@@ -38,6 +39,7 @@ public class DonorRegisterActivity extends AppCompatActivity implements View.OnC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityDonorRegisterBinding.inflate(getLayoutInflater());
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         getSupportActionBar().setTitle(R.string.create_new_account);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         View view = binding.getRoot();

@@ -87,5 +87,16 @@
     <string name="your_history">History</string>
     <string name="created_at">Created At</string>
     <string name="get_this_item">Get this item</string>
+    <string name="submit">Submit</string>
+    <string name="id_card_enter">Enter your ID card number.</string>
+    <string name="Id_card_number">ID Number</string>
+    <string name="reason">Reason</string>
+    <string name="id_card_important">Can\'t proces request without ID CARD NUMBER.</string>
+    <string name="reason_cannot_be_null">Reason cannot be empty.</string>
+    <string name="processing_request">Processing request.</string>
+    <string name="please_wait_request">Please wait while, your request is being submitted.]</string>
+    <string name="request_submitted_already">You have already submitted a request againts this item.</string>
+    <string name="problem">Problem</string>
+    <string name="amount">Amount</string>
 
 </resources>

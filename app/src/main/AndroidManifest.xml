@@ -14,10 +14,17 @@
         android:theme="@style/Theme.GiveItgi"
         tools:targetApi="31">
         <activity
+            android:name=".ReceiverActivities.CategoriesActivities.ApplyfordonationActivity"
+            android:exported="false"
+            />
+        <activity
+            android:name=".ReceiverActivities.CRUD.ItemFormActivity"
+            android:exported="false"
+            android:theme="@style/Theme.GiveItgi.ActionBar" />
+        <activity
             android:name=".ReceiverActivities.CRUD.ViewSingleItemActivity"
             android:exported="false"
-            android:theme="@style/Theme.GiveItgi.ActionBar"
-            />
+            android:theme="@style/Theme.GiveItgi.ActionBar" />
         <activity
             android:name=".ReceiverActivities.CategoriesActivities.ItemListActivity"
             android:exported="false"

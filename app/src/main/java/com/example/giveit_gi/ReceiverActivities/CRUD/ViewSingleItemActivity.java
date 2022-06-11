@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 
 import com.bumptech.glide.Glide;
 import com.example.giveit_gi.Utils.CONSTANTS;
@@ -20,6 +21,7 @@ public class ViewSingleItemActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityViewItemBinding.inflate(getLayoutInflater());
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         View view = binding.getRoot();
         setContentView(view);
         Intent intent = getIntent();
@@ -42,6 +44,17 @@ public class ViewSingleItemActivity extends AppCompatActivity {
         binding.donationLocation.setText(location);
         binding.donationTime.setText(donationTime);
         Glide.with(this).load(imageURL).into(binding.heroImage);
+
+        binding.getitemButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ViewSingleItemActivity.this, ItemFormActivity.class);
+                intent.putExtra(CONSTANTS.DONATION_ID, donationID);
+                startActivity(intent);
+            }
+        });
+
+
 
 
     }

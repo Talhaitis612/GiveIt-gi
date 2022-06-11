@@ -174,6 +174,7 @@ public class DonateThingsActivity extends AppCompatActivity implements View.OnCl
                                                             donorRef.update("donationList", FieldValue.arrayUnion(generateUniqueKey));
 
 
+
                                                             Snackbar.make(binding.getRoot(), "Donation added successfully!", Snackbar.LENGTH_LONG)
                                                                     .setAction("Action", null).show();
                                                             startActivity(new Intent(DonateThingsActivity.this, DonorHomeActivity.class));

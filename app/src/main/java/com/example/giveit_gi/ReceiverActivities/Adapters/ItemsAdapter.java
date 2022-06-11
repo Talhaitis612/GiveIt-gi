@@ -3,6 +3,7 @@ package com.example.giveit_gi.ReceiverActivities.Adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,8 @@ import com.bumptech.glide.Glide;
 import com.example.giveit_gi.DonorActivities.Interfaces.ItemClickListener;
 import com.example.giveit_gi.Models.Donation;
 import com.example.giveit_gi.R;
+import com.example.giveit_gi.ReceiverActivities.CRUD.ItemFormActivity;
+import com.example.giveit_gi.Utils.CONSTANTS;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
@@ -67,7 +70,9 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.DonationView
         holder.getThingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(context, ItemFormActivity.class);
+                intent.putExtra(CONSTANTS.DONATION_ID, donation.getDonationID());
+                context.startActivity(intent);
             }
         });
         holder.itemView.setOnClickListener(new View.OnClickListener() {
