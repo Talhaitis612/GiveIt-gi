@@ -98,5 +98,7 @@
     <string name="request_submitted_already">You have already submitted a request againts this item.</string>
     <string name="problem">Problem</string>
     <string name="amount">Amount</string>
+    <string name="amount_cannot_be_null">Amount cannot be null.</string>
+    <string name="problem_cannot_be_null">Problem cannot be empty.</string>
 
 </resources>

@@ -1,10 +1,13 @@
 package com.example.giveit_gi.Models;
 
+import java.util.Date;
+
 public class ApplyDonation {
     private String aplDonationID, name, email,idCardNumber, phoneNo, problem, location, amountNeeded;
+    Date appliedTime;
     private Boolean isApproved;
 
-    public ApplyDonation(String aplDonationID, String name, String email, String idCardNumber, String phoneNo, String problem, String location, String amountNeeded, Boolean isApproved) {
+    public ApplyDonation(String aplDonationID, String name, String email, String idCardNumber, String phoneNo, String problem, String location, String amountNeeded, Boolean isApproved, Date appliedTime) {
         this.aplDonationID = aplDonationID;
         this.name = name;
         this.email = email;
@@ -14,7 +17,10 @@ public class ApplyDonation {
         this.location = location;
         this.amountNeeded = amountNeeded;
         this.isApproved = isApproved;
+        this.appliedTime = appliedTime;
     }
+
+
 
     public String getAplDonationID() {
         return aplDonationID;
@@ -86,5 +92,13 @@ public class ApplyDonation {
 
     public void setApproved(Boolean approved) {
         isApproved = approved;
+    }
+
+    public Date getAppliedTime() {
+        return appliedTime;
+    }
+
+    public void setAppliedTime(Date appliedTime) {
+        this.appliedTime = appliedTime;
     }
 }

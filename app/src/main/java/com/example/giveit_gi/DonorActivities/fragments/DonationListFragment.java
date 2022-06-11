@@ -4,13 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,16 +11,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import com.example.giveit_gi.DonorActivities.Adapters.DonationAdapter;
 import com.example.giveit_gi.DonorActivities.CRUD.ViewDonationActivity;
 import com.example.giveit_gi.DonorActivities.Interfaces.ItemClickListener;
 import com.example.giveit_gi.Models.Donation;
-import com.example.giveit_gi.R;
 import com.example.giveit_gi.Utils.CONSTANTS;
 import com.example.giveit_gi.databinding.FragmentDonationListBinding;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -36,7 +31,6 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 
@@ -47,7 +41,6 @@ public class  DonationListFragment extends Fragment implements ItemClickListener
     ArrayList<Donation> donationArrayList;
     public DonationAdapter donationAdapter;
     ProgressDialog progressDialog;
-    SwipeRefreshLayout swipeRefreshLayout;
 
 
     @Override
@@ -64,23 +57,18 @@ public class  DonationListFragment extends Fragment implements ItemClickListener
         binding.donationRecycler.setHasFixedSize(true);
         binding.donationRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
         db = FirebaseFirestore.getInstance();
-        donationArrayList = new ArrayList<Donation>();
+        donationArrayList = new ArrayList<>();
         donationAdapter = new DonationAdapter(getContext(), donationArrayList,this);
         binding.donationRecycler.setAdapter(donationAdapter);
         loadDonationList();
-        binding.swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        binding.swipeRefresh.setOnRefreshListener((SwipeRefreshLayout.OnRefreshListener) () -> new Handler().postDelayed(new Runnable() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
-            public void onRefresh() {
-                new Handler().postDelayed(new Runnable() {
-                    @SuppressLint("NotifyDataSetChanged")
-                    @Override
-                    public void run() {
-                        donationAdapter.notifyDataSetChanged();
-                        binding.swipeRefresh.setRefreshing(false);
-                    }
-                }, 2000);
+            public void run() {
+                donationAdapter.notifyDataSetChanged();
+                binding.swipeRefresh.setRefreshing(false);
             }
-        });
+        }, 2000));
 
 
 
@@ -102,7 +90,8 @@ public class  DonationListFragment extends Fragment implements ItemClickListener
                             }
                          return;
                      }
-                     for (QueryDocumentSnapshot doc: value){
+                        assert value != null;
+                        for (QueryDocumentSnapshot doc: value){
                              Donation donation = new Donation(
                                      doc.getString("donationID"),
                                      doc.getString("title"),

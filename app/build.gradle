@@ -63,9 +63,15 @@ dependencies {
 
 //    For loading Image from URL
     implementation 'com.github.bumptech.glide:glide:4.13.0'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.0'
 //  GSON
     implementation 'com.google.code.gson:gson:2.8.9'
+
+    // Stripe Android SDK
+    implementation 'com.stripe:stripe-android:20.5.0'
+    implementation 'com.stripe:stripe-java:20.77.0'
+    implementation 'com.android.volley:volley:1.2.1'
 
 
     testImplementation 'junit:junit:4.13.2'

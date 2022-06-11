@@ -1,41 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="8dp"
+    android:layout_margin="4dp"
     tools:context=".DonorActivities.AuthenticationActivities.DonorRegisterActivity">
+  <RelativeLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/main_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:gravity="center"
-        android:text="To apply for donation, fill the form."
-        android:textAllCaps="true"
-        android:textColor="@color/purple_700"
-        android:textSize="25sp"
-        android:textStyle="bold"
+      <TextView
+          android:id="@+id/main_title"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="10dp"
+          android:gravity="center"
+          android:text="To apply for donation, fill the form."
+          android:textAllCaps="true"
+          android:textColor="@color/purple_700"
+          android:textSize="22sp"
+          android:textStyle="bold"
 
-        />
+          />
 
-    <TextView
-        android:id="@+id/note_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/main_title"
-        android:layout_marginTop="16dp"
-        android:gravity="center"
-        android:text=" note that you can only apply for donation once using an ID Card."
-        android:textAllCaps="true"
-        android:textColor="@color/black"
-        android:textSize="12sp"
-        android:textStyle="bold"
+      <TextView
+          android:id="@+id/note_title"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/main_title"
+          android:layout_marginTop="10dp"
+          android:gravity="center"
+          android:text="Note that you can only apply for donation once using an ID Card."
+          android:textAllCaps="true"
+          android:textColor="@color/black"
+          android:textSize="12sp"
+          android:textStyle="bold"
 
 
-        />
+          />
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
@@ -174,13 +177,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:hint="@string/amount"
-                app:placeholderText="Amount needed">
+                app:placeholderText="Amount needed in rupees">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/amount_editText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text" />
+                    android:inputType="number" />
 
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -205,5 +208,5 @@
     </com.google.android.material.card.MaterialCardView>
 
 
-
-</RelativeLayout>
+  </RelativeLayout>
+</ScrollView>
