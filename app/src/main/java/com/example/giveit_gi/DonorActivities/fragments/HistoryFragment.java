@@ -3,13 +3,17 @@ package com.example.giveit_gi.DonorActivities.fragments;
 import android.graphics.Color;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.giveit_gi.R;
+import com.example.giveit_gi.Utils.CONSTANTS;
 import com.example.giveit_gi.databinding.FragmentDonationListBinding;
 import com.example.giveit_gi.databinding.FragmentHistoryBinding;
 import com.github.mikephil.charting.components.Legend;
@@ -18,8 +22,14 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.util.ArrayList;
 
@@ -62,6 +72,21 @@ public class HistoryFragment extends Fragment {
 
 
     private void loadPieChartData() {
+
+
+        db.collection(CONSTANTS.DONOR_COLLECTION_PATH)
+                .document(mAuth.getCurrentUser().getUid())
+                .addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
+                        assert documentSnapshot != null;
+                        Log.e("DONOR ID", mAuth.getCurrentUser().getUid());
+                        ArrayList<String> donationList = new ArrayList<>();
+                        donationList = (ArrayList<String>) documentSnapshot.get("donationList");
+
+                        Log.e("Data", String.valueOf(donationList.size()));
+                    }
+                });
 
         ArrayList<PieEntry> entries = new ArrayList<>();
         entries.add(new PieEntry(0.2f, "Events Organization"));

@@ -109,5 +109,8 @@
     <string name="payment_processing">Your payment is being processed.</string>
     <string name="there_s_no_donation_as_of_now">THERE\'S NO DONATION AS OF NOW</string>
     <string name="contact_number">Contact Number</string>
+    <string name="add_event">Add Event</string>
+    <string name="pick_date">Pick date</string>
+    <string name="pick_time">Pick Time</string>
 
 </resources>

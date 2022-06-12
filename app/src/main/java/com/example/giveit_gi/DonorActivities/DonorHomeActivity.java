@@ -58,13 +58,6 @@ public class DonorHomeActivity extends AppCompatActivity implements NavigationVi
         Paper.init(this);
 
 
-        binding.appBarHome.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
@@ -94,6 +87,9 @@ public class DonorHomeActivity extends AppCompatActivity implements NavigationVi
                 assert documentSnapshot != null;
 
                 ArrayList<String> donationList = (ArrayList<String>) documentSnapshot.get("donationList");
+                ArrayList<String> eventList = (ArrayList<String>) documentSnapshot.get("eventList");
+                ArrayList<String> moneyContributionList = (ArrayList<String>) documentSnapshot.get("moneyContributionList");
+
 
                 CONSTANTS.currentloggedInDonor = new
                         Donor(
@@ -103,8 +99,9 @@ public class DonorHomeActivity extends AppCompatActivity implements NavigationVi
                         documentSnapshot.getString("phone"),
                         documentSnapshot.getString("password"),
                         documentSnapshot.getString("profilePicture"),
-                        donationList
-
+                        donationList,
+                        eventList,
+                        moneyContributionList
                 );
 //                nameEdTextView.setText(CONSTANTS.currentloggedInDonor.getName());
 

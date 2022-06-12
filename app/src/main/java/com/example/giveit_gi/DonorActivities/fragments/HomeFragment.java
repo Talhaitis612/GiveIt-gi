@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.giveit_gi.DonorActivities.CRUD.AddEventActivity;
 import com.example.giveit_gi.DonorActivities.CategoriesActivities.DonateMoneyActivity;
 import com.example.giveit_gi.DonorActivities.CategoriesActivities.DonateThingsActivity;
 import com.example.giveit_gi.R;
@@ -44,6 +45,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         }
         if(id== R.id.donate_money){
             startActivity(new Intent(getActivity(), DonateMoneyActivity.class));
+
+        }
+        if(id==R.id.add_event){
+            startActivity(new Intent(getActivity(), AddEventActivity.class));
 
         }
     }

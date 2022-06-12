@@ -125,8 +125,13 @@ public class DonorRegisterActivity extends AppCompatActivity implements View.OnC
                 public void onSuccess(AuthResult authResult) {
                     LoadingBar.hideLoadingBar();
                     Toast.makeText(DonorRegisterActivity.this, getString(R.string.account_created_successfully), Toast.LENGTH_SHORT).show();
-                    ArrayList<String> myList = new ArrayList<String>();
-                    Donor donor = new Donor(mAuth.getCurrentUser().getUid(),name, email, phone,password,confirmPassword,myList);
+                    ArrayList<String> donationList = new ArrayList<String>();
+                    ArrayList<String> eventList = new ArrayList<String>();
+                    ArrayList<String> moneyContributionList = new ArrayList<String>();
+
+                    Donor donor = new Donor(mAuth.getCurrentUser().getUid(),name, email, phone,password,confirmPassword,donationList,
+                            eventList, moneyContributionList
+                            );
                     db.collection(CONSTANTS.DONOR_COLLECTION_PATH)
                             .document(mAuth.getCurrentUser().getUid()).set(donor).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override

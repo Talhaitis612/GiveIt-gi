@@ -13,7 +13,7 @@ public class CONSTANTS {
 
     public static final String DONOR_COLLECTION_PATH = "donors";
 
-    public static final String DONATION_COLLECTION_PATH = "donation";
+    public static final String DONATION_COLLECTION_PATH = "donation-item";
 
     public static final String REQUEST_ITEM_COLLECTION_PATH = "requested-donation";
 

@@ -93,6 +93,10 @@ public class  DonationListFragment extends Fragment implements ItemClickListener
                      }
                         assert value != null;
                      donationArrayList.clear();
+                     if(value.isEmpty()){
+                         progressDialog.dismiss();
+                         return;
+                     }
                         for (QueryDocumentSnapshot doc: value){
                              Donation donation = new Donation(
                                      doc.getString("donationID"),

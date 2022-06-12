@@ -13,14 +13,26 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GiveItgi"
         tools:targetApi="31">
-        <meta-data
-            android:name="com.google.android.gms.wallet.api.enabled"
-            android:value="true" />
         <activity
-            android:name=".DonorActivities.CategoriesActivities.DonateMoneyActivity"
+            android:name=".DonorActivities.CategoriesActivities.EventActivity"
             android:exported="false"
             android:theme="@style/Theme.GiveItgi.ActionBar"
             />
+        <activity
+            android:name=".DonorActivities.CRUD.AddEventActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.GiveItgi.ActionBar" />
+
+
+        <meta-data
+            android:name="com.google.android.gms.wallet.api.enabled"
+            android:value="true" />
+
+        <activity
+            android:name=".DonorActivities.CategoriesActivities.DonateMoneyActivity"
+            android:exported="false"
+            android:theme="@style/Theme.GiveItgi.ActionBar" />
         <activity
             android:name=".ReceiverActivities.CategoriesActivities.ApplyfordonationActivity"
             android:exported="false"

@@ -93,7 +93,6 @@ public class DonateThingsActivity extends AppCompatActivity implements View.OnCl
         int id = view.getId();
         if (id == R.id.add_image) {
             CropImage.activity(imageUri)
-                    .setAspectRatio(1, 1)
                     .start(DonateThingsActivity.this);
 
         } else if (id == R.id.remove_image) {
