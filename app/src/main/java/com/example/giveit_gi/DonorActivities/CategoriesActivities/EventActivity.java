@@ -56,26 +56,35 @@ public class EventActivity extends AppCompatActivity implements ItemClickListene
         progressDialog.setMessage("Fetching event List...");
         progressDialog.show();
 
-        binding.eventsRecycler.setHasFixedSize(true);
-        binding.eventsRecycler.setLayoutManager(new LinearLayoutManager(this));
-        db = FirebaseFirestore.getInstance();
+        try {
+            FirebaseAuth mAuth = FirebaseAuth.getInstance();
+            String uid = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
+            if (!TextUtils.isEmpty(uid)){
+                binding.addEventFab.setVisibility(View.VISIBLE);
+                binding.addEventFab.setOnClickListener(view -> startActivity(new Intent(EventActivity.this, AddEventActivity.class)));
 
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+            }
 
-        String uid = mAuth.getCurrentUser().getUid();
+        }
+        catch (Exception e){
+            Log.e("Error", e.getMessage());
 
-        if (TextUtils.isEmpty(uid)){
-            binding.addEventFab.setVisibility(View.GONE);
         }
 
 
 
-        binding.addEventFab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(EventActivity.this, AddEventActivity.class));
-            }
-        });
+
+
+        binding.eventsRecycler.setHasFixedSize(true);
+        binding.eventsRecycler.setLayoutManager(new LinearLayoutManager(this));
+        db = FirebaseFirestore.getInstance();
+
+
+
+
+
+
+
 
 
         eventArrayList = new ArrayList<>();
