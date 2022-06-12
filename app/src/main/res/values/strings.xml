@@ -76,7 +76,7 @@
     <string name="location_cannot_be_null">Location cannot be empty.</string>
     <string name="select_image">Please select an image.</string>
     <string name="adding">Adding</string>
-    <string name="wait">Please wait while we add ur donation.</string>
+    <string name="wait">Please wait while we add your donation.</string>
     <string name="all_donation">All donations</string>
     <string name="title_of_donation">Title of donation</string>
     <string name="update">Update</string>
@@ -112,5 +112,13 @@
     <string name="add_event">Add Event</string>
     <string name="pick_date">Pick date</string>
     <string name="pick_time">Pick Time</string>
+    <string name="eventTitle">Event Title</string>
+    <string name="description_of_event">Event Description</string>
+    <string name="event_date">Event date</string>
+    <string name="do_you_really_want_to_event">Are you sure you want to delete this event?</string>
+    <string name="choose_date">Please choose a date.</string>
+    <string name="choose_time">Please choose a date.</string>
+    <string name="wait_event">Please wait, while we add your event.</string>
+
 
 </resources>

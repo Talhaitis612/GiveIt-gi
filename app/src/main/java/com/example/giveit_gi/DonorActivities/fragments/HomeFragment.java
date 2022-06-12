@@ -13,6 +13,7 @@ import com.example.giveit_gi.DonorActivities.CRUD.AddEventActivity;
 import com.example.giveit_gi.DonorActivities.CategoriesActivities.DonateMoneyActivity;
 import com.example.giveit_gi.DonorActivities.CategoriesActivities.DonateThingsActivity;
 import com.example.giveit_gi.R;
+import com.example.giveit_gi.Shared.CategoriesActivities.EventActivity;
 import com.example.giveit_gi.databinding.FragmentHomeBinding;
 
 
@@ -48,7 +49,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
         }
         if(id==R.id.add_event){
-            startActivity(new Intent(getActivity(), AddEventActivity.class));
+            startActivity(new Intent(getActivity(), EventActivity.class));
 
         }
     }

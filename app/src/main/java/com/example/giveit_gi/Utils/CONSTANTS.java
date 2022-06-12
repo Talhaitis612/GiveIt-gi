@@ -19,10 +19,16 @@ public class CONSTANTS {
 
     public static final String APPLY_ITEM_COLLECTION_PATH = "applied-donation";
 
+    public static final String EVENT_COLLECTION_PATH = "events";
+
+
 
 
 
     public static final String DONATIONS_PICTURES_PATH = "donation-pictures";
+
+    public static final String EVENTS_PICTURES_PATH = "event-pictures";
+
 
     public static final String ALLOWED_CHARACTERS ="0123456789qwertyuiopasdfghjklzxcvbnmabcdefgh";
 

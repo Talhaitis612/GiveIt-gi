@@ -59,7 +59,6 @@ public class DonateThingsActivity extends AppCompatActivity implements View.OnCl
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
         binding = ActivityDonateThingsBinding.inflate(getLayoutInflater());
         Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.donate_a_thing);
