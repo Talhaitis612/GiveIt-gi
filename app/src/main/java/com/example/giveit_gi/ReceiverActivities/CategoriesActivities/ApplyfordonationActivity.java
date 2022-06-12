@@ -46,6 +46,7 @@ public class ApplyfordonationActivity extends AppCompatActivity {
     }
 
     private void submitApplication() {
+        String title = binding.titleEditText.getText().toString().trim();
         String name = binding.nameEditText.getText().toString().trim();
         String email = binding.emailEditText.getText().toString().trim();
         String phone = binding.phoneEditText.getText().toString().trim();
@@ -81,9 +82,13 @@ public class ApplyfordonationActivity extends AppCompatActivity {
             binding.locationLayout.setError(getString(R.string.amount_cannot_be_null));
 
         }
+        if (TextUtils.isEmpty(binding.titleEditText.getText())) {
+            binding.nameLayout.setError(getString(R.string.err_title_empty));
+        }
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             binding.emailLayout.setError(getString(R.string.err_email_format));
-        } else {
+        }
+        else {
             LoadingBar.showLoadingBar(this, getString(R.string.processing_request), getString(R.string.please_wait_request));
             String generateUniqueRequestID = CONSTANTS.generateUniqueKey(30);
 
@@ -93,9 +98,11 @@ public class ApplyfordonationActivity extends AppCompatActivity {
                     email,
                     idCardNumber,
                     phone,
+                    title,
                     problem,
                     location,
                     amount,
+                    0,
                     false,
                     Calendar.getInstance().getTime()
             );

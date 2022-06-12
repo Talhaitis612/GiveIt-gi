@@ -2,33 +2,37 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="8dp"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="8dp">
 
     <TextView
         android:id="@+id/main_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/reset_password"
-        android:textSize="20sp"
-        android:layout_margin="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/pay"
         android:textColor="@color/purple_700"
-        android:textStyle="bold"
-        />
+        android:textSize="20sp"
+        android:gravity="center"
+        android:textStyle="bold" />
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/reset_email_edittext_layout"
+        android:id="@+id/amount_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/enter_email_to_reset_password"
+        android:hint="@string/amount"
         android:layout_below="@id/main_title"
+        app:placeholderText="@string/enter_amount_you"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
 
         >
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/reset_email_edittext"
+            android:id="@+id/amount_editText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
@@ -40,16 +44,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp"
+        android:gravity="center"
 
-        android:layout_below="@id/reset_email_edittext_layout"
+        android:layout_below="@id/amount_layout"
         >
 
         <Button
-            android:id="@+id/confirmButton"
+            android:id="@+id/payButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:text="@string/confirm"
+            android:text="@string/pay_now"
             android:textAllCaps="false"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -63,7 +68,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
-            android:layout_toStartOf="@+id/confirmButton"
+            android:layout_toStartOf="@+id/payButton"
             android:text="@string/cancel"
             android:textAllCaps="false"
             android:textSize="16sp"

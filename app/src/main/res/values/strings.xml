@@ -100,5 +100,12 @@
     <string name="amount">Amount</string>
     <string name="amount_cannot_be_null">Amount cannot be null.</string>
     <string name="problem_cannot_be_null">Problem cannot be empty.</string>
+    <string name="payment">Payment</string>
+    <string name="_0">$0</string>
+    <string name="err_title_empty">Please enter the title of donation.</string>
+    <string name="pay">Donate Money</string>
+    <string name="enter_amount_you">Enter amount you want to donate.</string>
+    <string name="pay_now">Pay Now</string>
+    <string name="payment_processing">Your payment is being processed.</string>
 
 </resources>
