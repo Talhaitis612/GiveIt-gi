@@ -15,6 +15,11 @@
         android:name="com.example.giveit_gi.DonorActivities.fragments.DonationListFragment"
         android:label="@string/all_donation"
         tools:layout="@layout/fragment_donation_list" />
+    <fragment
+        android:id="@+id/nav_yourHistory"
+        android:name="com.example.giveit_gi.DonorActivities.fragments.HistoryFragment"
+        android:label="@string/all_donation"
+        tools:layout="@layout/fragment_donation_list" />
 
 
 </navigation>

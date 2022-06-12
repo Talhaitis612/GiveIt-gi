@@ -40,7 +40,7 @@ import java.util.Objects;
 
 import io.paperdb.Paper;
 
-public class DonorHomeActivity extends AppCompatActivity {
+public class DonorHomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private ActivityDonorHomeBinding binding;
     private AppBarConfiguration mAppBarConfiguration;
     FirebaseAuth mAuth;
@@ -52,6 +52,7 @@ public class DonorHomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityDonorHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        binding.navView.setNavigationItemSelectedListener(this);
         setSupportActionBar(binding.appBarHome.toolbar);
 
         Paper.init(this);
@@ -153,4 +154,17 @@ public class DonorHomeActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId()==R.id.nav_yourHistory){
+            finish();
+        }
+
+        return false;
+    }
+
+    private void setNavigationViewListener() {
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+    }
 }
