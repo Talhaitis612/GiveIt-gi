@@ -7,6 +7,10 @@
     tools:context=".DonorActivities.fragments.DonationListFragment">
 
     <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/donationRecycler"
@@ -14,5 +18,7 @@
         android:layout_height="wrap_content"
         android:padding="8dp"
         />
+
+    </RelativeLayout>
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

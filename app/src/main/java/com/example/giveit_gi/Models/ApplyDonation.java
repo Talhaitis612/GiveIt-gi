@@ -4,11 +4,11 @@ import java.util.Date;
 
 public class ApplyDonation {
     private String aplDonationID, name, email,idCardNumber, phoneNo,title, problem, location, amountNeeded;
-    int amountReceived;
+    private long amountReceived;
     Date appliedTime;
     private Boolean isApproved;
 
-    public ApplyDonation(String aplDonationID, String name, String email, String idCardNumber, String phoneNo,String title, String problem, String location, String amountNeeded,int amountReceived, Boolean isApproved, Date appliedTime) {
+    public ApplyDonation(String aplDonationID, String name, String email, String idCardNumber, String phoneNo,String title, String problem, String location, String amountNeeded,long amountReceived, Boolean isApproved, Date appliedTime) {
         this.aplDonationID = aplDonationID;
         this.name = name;
         this.email = email;
@@ -113,11 +113,11 @@ public class ApplyDonation {
         this.title = title;
     }
 
-    public int getAmountReceived() {
+    public long getAmountReceived() {
         return amountReceived;
     }
 
-    public void setAmountReceived(int amountReceived) {
+    public void setAmountReceived(long amountReceived) {
         this.amountReceived = amountReceived;
     }
 }

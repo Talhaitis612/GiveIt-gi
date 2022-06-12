@@ -4,9 +4,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.giveit_gi.DonorActivities.Adapters.DonationAdapter;
@@ -23,6 +25,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class DonateMoneyActivity extends AppCompatActivity  {
 
@@ -35,28 +38,32 @@ public class DonateMoneyActivity extends AppCompatActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityDonateMoneyBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-        getSupportActionBar().setTitle("Donate Money");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
         progressDialog.setMessage("Fetching donation List...");
         progressDialog.show();
+        binding = ActivityDonateMoneyBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Donate Money");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         binding.donationMoneyRecycler.setHasFixedSize(true);
         binding.donationMoneyRecycler.setLayoutManager(new LinearLayoutManager(this));
         db = FirebaseFirestore.getInstance();
+
+
         donationArrayList = new ArrayList<>();
         donationAdapter = new MoneyDonationAdapter(this, donationArrayList);
-        binding.donationMoneyRecycler.setAdapter(donationAdapter);
         loadRequestedDonationList();
+
+        binding.donationMoneyRecycler.setAdapter(donationAdapter);
+
+
     }
 
     private void loadRequestedDonationList() {
-        db.collection(CONSTANTS.REQUEST_ITEM_COLLECTION_PATH)
-                .orderBy("appliedTime", Query.Direction.DESCENDING )
-                .whereEqualTo("isApproved", false)
+        db.collection(CONSTANTS.APPLY_ITEM_COLLECTION_PATH)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @SuppressLint("NotifyDataSetChanged")
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                         if(error!=null){
@@ -67,6 +74,7 @@ public class DonateMoneyActivity extends AppCompatActivity  {
                             }
                             return;
                         }
+                        donationArrayList.clear();
                         assert value != null;
                         for (QueryDocumentSnapshot doc: value){
                             ApplyDonation donation = new ApplyDonation(
@@ -79,7 +87,7 @@ public class DonateMoneyActivity extends AppCompatActivity  {
                                     doc.getString("problem"),
                                     doc.getString("location"),
                                     doc.getString("amountNeeded"),
-                                    Integer.parseInt(doc.getString("amountReceived")),
+                                    doc.getLong("amountReceived"),
                                     doc.getBoolean("isApproved"),
                                     doc.getDate("createdAt")
                             );
@@ -94,6 +102,7 @@ public class DonateMoneyActivity extends AppCompatActivity  {
 
                     }
                 });
+
     }
 
     @Override

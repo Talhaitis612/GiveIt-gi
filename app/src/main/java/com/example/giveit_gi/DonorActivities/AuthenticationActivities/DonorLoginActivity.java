@@ -204,5 +204,9 @@ public class DonorLoginActivity extends AppCompatActivity implements View.OnClic
 
     }
 
-
+    @Override
+    protected void onDestroy() {
+        LoadingBar.hideLoadingBar();
+        super.onDestroy();
+    }
 }

@@ -72,6 +72,7 @@ public class  DonationListFragment extends Fragment implements ItemClickListener
 
 
 
+
         return binding.getRoot();
     }
 
@@ -91,6 +92,7 @@ public class  DonationListFragment extends Fragment implements ItemClickListener
                          return;
                      }
                         assert value != null;
+                     donationArrayList.clear();
                         for (QueryDocumentSnapshot doc: value){
                              Donation donation = new Donation(
                                      doc.getString("donationID"),

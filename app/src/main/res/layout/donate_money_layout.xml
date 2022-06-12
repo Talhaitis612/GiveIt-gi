@@ -58,7 +58,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:progressDrawable="@drawable/green_progressbar"
-                android:progressTint="@color/blue"
+                android:progressTint="@color/green"
                 android:max="10"
                 android:progress="1"
                 android:progressBackgroundTint="@color/off_white1"
@@ -68,15 +68,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 >
+
                 <TextView
                     android:id="@+id/start_amount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:text="@string/_0"
-                    android:textSize="20sp"
                     android:textColor="@color/black"
-                    />
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/target_amount"
@@ -101,10 +101,35 @@
                     android:src="@drawable/ic_baseline_calendar_month_24"
                     />
                 <TextView
-                    android:id="@+id/donation_time"
+                    android:id="@+id/appliedTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/created_at"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_marginStart="10dp"
+
+                    />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+
+                >
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_local_phone_24"
+                    />
+                <TextView
+                    android:id="@+id/contactNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/contact_number"
                     android:textSize="16sp"
                     android:textColor="@color/black"
                     android:textStyle="bold"
