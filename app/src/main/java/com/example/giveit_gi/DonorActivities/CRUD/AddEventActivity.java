@@ -13,10 +13,7 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.example.giveit_gi.DonorActivities.CategoriesActivities.DonateThingsActivity;
-import com.example.giveit_gi.DonorActivities.DonorHomeActivity;
-import com.example.giveit_gi.Models.Donation;
 import com.example.giveit_gi.R;
-import com.example.giveit_gi.Shared.CategoriesActivities.EventActivity;
 import com.example.giveit_gi.Shared.Models.Event;
 import com.example.giveit_gi.Utils.CONSTANTS;
 import com.example.giveit_gi.Utils.LoadingBar;
@@ -26,7 +23,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
 import com.google.firebase.auth.FirebaseAuth;
@@ -41,7 +37,6 @@ import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Objects;
 
 public class AddEventActivity extends AppCompatActivity  {
@@ -49,6 +44,8 @@ public class AddEventActivity extends AppCompatActivity  {
     ActivityAddEventBinding binding;
     int hour, min;
     String formattedTime;
+    String date;
+    String time;
     String am_pm = "";
 
 
@@ -150,6 +147,7 @@ public class AddEventActivity extends AppCompatActivity  {
             @Override
             public void onPositiveButtonClick(Object selection) {
                 binding.dateEditText.setText(materialDatePicker.getHeaderText());
+                date = materialDatePicker.getHeaderText();
             }
         });
         materialDatePicker.show(getSupportFragmentManager(), "LOG");
@@ -243,7 +241,7 @@ public class AddEventActivity extends AppCompatActivity  {
                                                 generateUniqueKey,
                                                 binding.titleEditText.getText().toString().trim(),
                                                 binding.descriptionEditText.getText().toString().trim(),
-                                                formattedTime,
+                                                date + "  "+ time,
                                                 myUrl,
                                                 binding.locationEditText.getText().toString().trim(),
                                                 currentUserID,

@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Parcelable;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +29,7 @@ import com.example.giveit_gi.Shared.Models.Event;
 import com.example.giveit_gi.Utils.CONSTANTS;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -65,9 +67,14 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.DonationView
     public void onBindViewHolder(@NonNull EventAdapter.DonationViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         Event event = eventArrayList.get(position);
-        if(Objects.equals(event.getDonorID(), CONSTANTS.currentloggedInDonor.getUid())){
-            holder.buttonLayout.setVisibility(View.VISIBLE);
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        String uid = firebaseAuth.getCurrentUser().getUid();
+        if(!TextUtils.isEmpty(uid)){
+            if(Objects.equals(event.getDonorID(), uid)){
+                holder.buttonLayout.setVisibility(View.VISIBLE);
+            }
         }
+
 
 
 

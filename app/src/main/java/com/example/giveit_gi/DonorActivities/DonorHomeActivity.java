@@ -124,6 +124,7 @@ public class DonorHomeActivity extends AppCompatActivity implements NavigationVi
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.nav_logout) {// do whatever
             Paper.book().destroy();
+            FirebaseAuth.getInstance().signOut();
             Intent intent = new Intent(DonorHomeActivity.this, MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);

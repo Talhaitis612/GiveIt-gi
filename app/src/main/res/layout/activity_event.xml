@@ -33,7 +33,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentEnd="true"
                     android:contentDescription="@string/add_donation"
-                    android:visibility="gone"
+                    android:visibility="visible"
             />
 
                 </RelativeLayout>

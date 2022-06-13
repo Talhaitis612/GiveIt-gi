@@ -8,8 +8,9 @@ import android.view.View;
 
 import com.example.giveit_gi.R;
 import com.example.giveit_gi.ReceiverActivities.CategoriesActivities.ApplyfordonationActivity;
+import com.example.giveit_gi.ReceiverActivities.CategoriesActivities.EventActivityReceiver;
 import com.example.giveit_gi.ReceiverActivities.CategoriesActivities.ItemListActivity;
-import com.example.giveit_gi.Shared.CategoriesActivities.EventActivity;
+import com.example.giveit_gi.DonorActivities.CategoriesActivities.EventActivity;
 import com.example.giveit_gi.databinding.ActivityReceiverBinding;
 
 import java.util.Objects;
@@ -53,7 +54,7 @@ public class ReceiverActivity extends AppCompatActivity implements View.OnClickL
 
         }
         if(id == R.id.see_event){
-            startActivity(new Intent(ReceiverActivity.this, EventActivity.class));
+            startActivity(new Intent(ReceiverActivity.this, EventActivityReceiver.class));
 
         }
 

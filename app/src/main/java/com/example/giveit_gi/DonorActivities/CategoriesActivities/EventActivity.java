@@ -1,36 +1,30 @@
-package com.example.giveit_gi.Shared.CategoriesActivities;
+package com.example.giveit_gi.DonorActivities.CategoriesActivities;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.giveit_gi.DonorActivities.Adapters.MoneyDonationAdapter;
 import com.example.giveit_gi.DonorActivities.CRUD.AddEventActivity;
 import com.example.giveit_gi.DonorActivities.Interfaces.ItemClickListener;
-import com.example.giveit_gi.Models.ApplyDonation;
-import com.example.giveit_gi.Models.Donation;
 import com.example.giveit_gi.Shared.Adapters.EventAdapter;
 import com.example.giveit_gi.Shared.Models.Event;
 import com.example.giveit_gi.Utils.CONSTANTS;
 import com.example.giveit_gi.databinding.ActivityEventBinding;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class EventActivity extends AppCompatActivity implements ItemClickListener {
 
@@ -56,28 +50,19 @@ public class EventActivity extends AppCompatActivity implements ItemClickListene
         progressDialog.setMessage("Fetching event List...");
         progressDialog.show();
 
-        try {
-            FirebaseAuth mAuth = FirebaseAuth.getInstance();
-            String uid = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
-            if (!TextUtils.isEmpty(uid)){
-                binding.addEventFab.setVisibility(View.VISIBLE);
-                binding.addEventFab.setOnClickListener(view -> startActivity(new Intent(EventActivity.this, AddEventActivity.class)));
-
-            }
-
-        }
-        catch (Exception e){
-            Log.e("Error", e.getMessage());
-
-        }
-
-
 
 
 
         binding.eventsRecycler.setHasFixedSize(true);
         binding.eventsRecycler.setLayoutManager(new LinearLayoutManager(this));
         db = FirebaseFirestore.getInstance();
+
+        binding.addEventFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(EventActivity.this, AddEventActivity.class));
+            }
+        });
 
 
 
@@ -106,8 +91,8 @@ public class EventActivity extends AppCompatActivity implements ItemClickListene
     private void loadEventList() {
 
         db.collection(CONSTANTS.EVENT_COLLECTION_PATH)
-                .whereEqualTo("isEventCompleted", false)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @SuppressLint("NotifyDataSetChanged")
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                         if(error!=null){
@@ -119,7 +104,6 @@ public class EventActivity extends AppCompatActivity implements ItemClickListene
                             return;
                         }
                         assert value != null;
-                        eventArrayList.clear();
                         if(value.isEmpty()){
                             progressDialog.dismiss();
                             return;

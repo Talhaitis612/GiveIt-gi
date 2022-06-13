@@ -9,11 +9,10 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.example.giveit_gi.DonorActivities.CRUD.AddEventActivity;
 import com.example.giveit_gi.DonorActivities.CategoriesActivities.DonateMoneyActivity;
 import com.example.giveit_gi.DonorActivities.CategoriesActivities.DonateThingsActivity;
 import com.example.giveit_gi.R;
-import com.example.giveit_gi.Shared.CategoriesActivities.EventActivity;
+import com.example.giveit_gi.DonorActivities.CategoriesActivities.EventActivity;
 import com.example.giveit_gi.databinding.FragmentHomeBinding;
 
 
