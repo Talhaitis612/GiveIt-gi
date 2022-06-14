@@ -20,8 +20,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.giveit_gi.MainActivity;
 import com.example.giveit_gi.Models.Donor;
 import com.example.giveit_gi.R;
@@ -79,6 +81,7 @@ public class DonorHomeActivity extends AppCompatActivity implements NavigationVi
         String currentId= mAuth.getCurrentUser().getUid();
         View headerView = binding.navView.getHeaderView(0);
         TextView nameEdTextView = (TextView) headerView.findViewById(R.id.user_name);
+        ImageView profileImageView = (ImageView) headerView.findViewById(R.id.user_profile_image);
 
         db = FirebaseFirestore.getInstance();
         db.collection(CONSTANTS.DONOR_COLLECTION_PATH).document(currentId).addSnapshotListener(new EventListener<DocumentSnapshot>() {
@@ -106,6 +109,12 @@ public class DonorHomeActivity extends AppCompatActivity implements NavigationVi
 //                nameEdTextView.setText(CONSTANTS.currentloggedInDonor.getName());
 
                 nameEdTextView.setText(CONSTANTS.currentloggedInDonor.getName());
+                if(Objects.equals(CONSTANTS.currentloggedInDonor.getProfilePicture(), "")){
+                    return;
+                }
+                Glide.with(DonorHomeActivity.this).load(CONSTANTS.currentloggedInDonor.getProfilePicture())
+                        .into(profileImageView);
+
             }
         });
 

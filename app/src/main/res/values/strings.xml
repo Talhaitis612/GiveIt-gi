@@ -119,6 +119,9 @@
     <string name="choose_date">Please choose a date.</string>
     <string name="choose_time">Please choose a date.</string>
     <string name="wait_event">Please wait, while we add your event.</string>
+    <string name="update_your_information">Update your information</string>
+    <string name="personal_information">Personal Information</string>
+    <string name="change_profile">Change Profile</string>
 
 
 </resources>

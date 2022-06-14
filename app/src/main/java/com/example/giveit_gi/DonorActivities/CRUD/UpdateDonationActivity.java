@@ -86,7 +86,6 @@ public class UpdateDonationActivity extends AppCompatActivity  {
             @Override
             public void onClick(View view) {
                 CropImage.activity(imageUri)
-                        .setAspectRatio(1, 1)
                         .start(UpdateDonationActivity.this);
             }
         });

@@ -29,6 +29,9 @@ public class CONSTANTS {
 
     public static final String EVENTS_PICTURES_PATH = "event-pictures";
 
+    public static final String DONOR_PICTURES_PATH = "donor-pictures";
+
+
 
     public static final String ALLOWED_CHARACTERS ="0123456789qwertyuiopasdfghjklzxcvbnmabcdefgh";
 
