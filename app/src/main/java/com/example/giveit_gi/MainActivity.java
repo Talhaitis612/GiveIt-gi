@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.giveit_gi.DonorActivities.DonorLoginActivity;
+import com.example.giveit_gi.DonorActivities.AuthenticationActivities.DonorLoginActivity;
 import com.example.giveit_gi.ReceiverActivities.ReceiverActivity;
 import com.example.giveit_gi.databinding.ActivityMainBinding;
 
@@ -21,22 +21,29 @@ public class MainActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
-        binding.donorButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, DonorLoginActivity.class));
-                finish();
-            }
-        });
+            binding.donorButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(MainActivity.this, DonorLoginActivity.class));
+                    finish();
+                }
+            });
 
-        binding.receiverButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, ReceiverActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+            binding.receiverButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(MainActivity.this, ReceiverActivity.class));
+                }
+            });
+
+        }
+
+
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
 
     }
 }

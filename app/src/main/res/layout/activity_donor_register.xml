@@ -1,25 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="8dp"
-    tools:context=".DonorActivities.DonorRegisterActivity">
+    tools:context=".DonorActivities.AuthenticationActivities.DonorRegisterActivity">
+   <RelativeLayout
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/main_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:gravity="center"
-        android:text="Register as a new user"
-        android:textAllCaps="true"
-        android:textColor="@color/purple_700"
-        android:textSize="25sp"
-        android:textStyle="bold"
+       <TextView
+           android:id="@+id/main_title"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="40dp"
+           android:gravity="center"
+           android:text="Register as a new user"
+           android:textAllCaps="true"
+           android:textColor="@color/purple_700"
+           android:textSize="25sp"
+           android:textStyle="bold"
 
-        />
+           />
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
@@ -62,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:hint="@string/email"
-                app:placeholderText="Enter your name">
+                app:placeholderText="Enter your email">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/email_editText"
@@ -212,6 +215,6 @@
 
     </com.google.android.material.card.MaterialCardView>
 
+   </RelativeLayout>
 
-
-</RelativeLayout>
+</ScrollView>
